@@ -1,0 +1,7 @@
+# Deploy static site (index.html) to Cloudflare.
+# Build command in Pages should be empty; if it runs "npx wrangler deploy", this config is used.
+name = "nilandatabytes-site"
+compatibility_date = "2026-02-04"
+
+[assets]
+directory = "."
