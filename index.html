@@ -231,7 +231,19 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
-      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #f0f9ff 50%, #ffffff 100%);
+      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
+        radial-gradient(circle at 15% 60%, rgba(13, 148, 136, 0.12), transparent 45%),
+        linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #f0f9ff 50%, #ffffff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23cbd5e1' stroke-width='1'%3E%3Cpath d='M0 0H240V240H0z'/%3E%3Cpath d='M60 0V240M120 0V240M180 0V240M0 60H240M0 120H240M0 180H240'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.12;
+      pointer-events: none;
     }
     .hero-inner {
       max-width: var(--container);
@@ -242,7 +254,7 @@
       gap: 3rem;
       align-items: center;
     }
-    .hero-content { max-width: 560px; }
+    .hero-content { max-width: 580px; position: relative; z-index: 1; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -262,24 +274,36 @@
     }
     .hero-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
     .hero h1 {
-      font-size: clamp(2.5rem, 4.5vw, 3.25rem);
-      font-weight: 700;
+      font-size: clamp(2.7rem, 4.8vw, 3.6rem);
+      font-weight: 750;
       line-height: 1.15;
       margin: 0 0 1.25rem;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.2s forwards;
     }
-    .hero h1 .line1 { color: #3b82f6; display: block; }
-    .hero h1 .line2 { color: #1e40af; display: block; }
-    .hero h1 .line3 { color: #1e3a8a; display: block; }
+    .hero h1 .line1,
+    .hero h1 .line2,
+    .hero h1 .line3 { display: block; }
+    .hero h1 .line2 { color: #0f172a; }
+    .hero h1 .line3 {
+      background: linear-gradient(120deg, #2563eb, #0d9488);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .hero-desc {
       color: #334155;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       line-height: 1.7;
       max-width: 520px;
       margin-bottom: 1.75rem;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.35s forwards;
+    }
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: #475569;
+      margin: 0 0 0.75rem;
     }
     .hero-btns {
       display: flex;
@@ -354,6 +378,30 @@
     }
     .hero-stat strong { color: #3b82f6; font-size: 1.25rem; }
     .hero-stat span { color: #64748b; font-size: 0.95rem; }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.6s forwards;
+    }
+    .hero-metric-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: var(--shadow);
+    }
+    .hero-metric-card strong {
+      display: block;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+    .hero-metric-card span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
 
     /* Hero illustration */
     .hero-illus {
@@ -364,6 +412,7 @@
       min-height: 320px;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.3s forwards;
+      z-index: 1;
     }
     .hero-db-grid {
       display: grid;
@@ -495,20 +544,41 @@
       margin-top: 2rem;
     }
     .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 18px;
+      padding: 1.6rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
     .service-card:hover {
-      border-color: var(--accent);
+      border-color: rgba(37, 99, 235, 0.4);
       transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
     }
-    .service-card h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
-    .service-card p { color: var(--text-muted); margin: 0 0 1rem; font-size: 0.95rem; }
+    .service-card h3 { font-size: 1.15rem; margin: 0; }
+    .service-card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(37, 99, 235, 0.12);
+      color: #2563eb;
+      font-size: 1.3rem;
+    }
+    .service-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .service-list li { margin-bottom: 0.35rem; }
     .service-link { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
 
     /* Tech Stack */
@@ -723,6 +793,7 @@
       .hero-desc { margin-left: auto; margin-right: auto; text-align: center; }
       .hero-btns { justify-content: center; }
       .hero-stat { justify-content: center; }
+      .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero-illus { order: -1; max-width: 340px; margin: 0 auto; min-height: 260px; }
       .hero-db-grid { gap: 0.75rem; }
       .hero-db-card { min-height: 90px; padding: 0.75rem; }
@@ -737,6 +808,7 @@
       .hero { padding: 100px 20px 60px; }
       .hero-btns { flex-direction: column; }
       .hero-btns .btn { width: 100%; justify-content: center; min-height: 48px; }
+      .hero-metrics { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .tools-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
@@ -790,21 +862,43 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 2l2.4 4.8L18 8l-4 4.2.9 5.8L10 15.7 5.1 18 6 12.2 2 8l5.6-1.2L10 2z" stroke="currentColor" stroke-width="1.4" fill="currentColor" opacity="0.15"/>
+            <path d="M10 4.5l1.5 3 3.4.7-2.5 2.6.6 3.5L10 12.6 7 14.3l.6-3.5-2.5-2.6 3.4-.7 1.5-3z" fill="currentColor"/>
+          </svg>
+          Database reliability, engineered.
+        </div>
         <h1>
-          <span class="line1">Optimize, Secure, &</span>
-          <span class="line2">Empower Your</span>
-          <span class="line3">Database</span>
+          <span class="line1">Modernize & scale</span>
+          <span class="line2">your database estate</span>
+          <span class="line3">with confidence</span>
         </h1>
-        <p class="hero-desc">Nilan DataBytes provides expert database management services to optimize performance, reduce costs, and ensure data security, allowing you to focus on core business growth.</p>
+        <p class="hero-subtitle">Enterprise-grade DBA, performance, and cloud migration services.</p>
+        <p class="hero-desc">Nilan DataBytes delivers proactive database operations, performance engineering, and cloud optimization so your teams ship faster with lower risk and predictable costs.</p>
         <div class="hero-pill-wrap">
-          <span class="hero-pill">🛟 24/7 Support</span>
-          <span class="hero-pill">👑 Reliable</span>
-          <span class="hero-pill">📈 Scalable</span>
-          <span class="hero-pill">🔒 Secure</span>
+          <span class="hero-pill">⚡ 99.9% uptime focus</span>
+          <span class="hero-pill">🛡️ Compliance-ready</span>
+          <span class="hero-pill">📊 Performance insights</span>
+          <span class="hero-pill">☁️ Cloud-native expertise</span>
         </div>
         <div class="hero-btns">
-          <a href="#contact" class="btn-primary">Get in Touch</a>
-          <a href="#projects" class="btn-secondary">Read Case Studies →</a>
+          <a href="#contact" class="btn-primary">Schedule a Strategy Call</a>
+          <a href="#services" class="btn-secondary">Explore Services →</a>
+        </div>
+        <div class="hero-metrics">
+          <div class="hero-metric-card">
+            <strong>24/7</strong>
+            <span>Monitoring & response</span>
+          </div>
+          <div class="hero-metric-card">
+            <strong>50+</strong>
+            <span>Production databases managed</span>
+          </div>
+          <div class="hero-metric-card">
+            <strong>99.9%</strong>
+            <span>Reliability target</span>
+          </div>
         </div>
       </div>
       <div class="hero-illus">
@@ -898,36 +992,72 @@
   <section id="services" class="services animate-on-scroll">
     <p class="section-label">Services We Provide</p>
     <h2 class="section-title">Take Control of Your Database Environment</h2>
-    <p class="section-desc">We are a team of expert database administrators passionate about helping businesses optimize, secure, and scale their data infrastructure.</p>
+    <p class="section-desc">We design a tailored operating model for your databases, from day-zero architecture to day-two operations and continuous optimization.</p>
     <div class="services-grid">
       <div class="service-card">
+        <span class="service-icon">🧭</span>
         <h3>Expert Database Management</h3>
-        <p>Comprehensive care for your databases: installation, optimization, security, and 24/7 support. Focus on your business while we keep your databases running smoothly.</p>
+        <p>Comprehensive care for your databases: install, scale, secure, and automate with dedicated operational playbooks.</p>
+        <ul class="service-list">
+          <li>Environment baselines & standards</li>
+          <li>Reliability runbooks</li>
+          <li>High-availability planning</li>
+        </ul>
         <a href="#contact" class="service-link">Explore →</a>
       </div>
       <div class="service-card">
+        <span class="service-icon">🔍</span>
         <h3>Performance & Security Audit</h3>
-        <p>Identify bottlenecks like slow queries and inefficient indexing. Secure your databases with proactive audits to safeguard valuable data.</p>
+        <p>Identify bottlenecks, reduce risk, and harden configurations with priority remediation plans.</p>
+        <ul class="service-list">
+          <li>Query profiling & tuning</li>
+          <li>Index health checks</li>
+          <li>Security posture review</li>
+        </ul>
         <a href="#contact" class="service-link">Audit →</a>
       </div>
       <div class="service-card">
+        <span class="service-icon">🧩</span>
         <h3>Consulting Services</h3>
-        <p>Strategic guidance to optimize performance, security, and scalability, with actionable recommendations tailored to your database needs.</p>
+        <p>Strategic guidance for modernization, migrations, and data architecture improvements.</p>
+        <ul class="service-list">
+          <li>Migration blueprints</li>
+          <li>Capacity forecasting</li>
+          <li>Tooling selection</li>
+        </ul>
         <a href="#contact" class="service-link">Consult →</a>
       </div>
       <div class="service-card">
+        <span class="service-icon">🛰️</span>
         <h3>Remote DBA</h3>
-        <p>24/7 expert monitoring, support, and maintenance without hiring full-time staff, ensuring database availability and optimization.</p>
+        <p>24/7 expert monitoring, incident response, and maintenance without full-time headcount.</p>
+        <ul class="service-list">
+          <li>Incident response SLAs</li>
+          <li>Routine patching</li>
+          <li>Operational reporting</li>
+        </ul>
         <a href="#contact" class="service-link">Monitor →</a>
       </div>
       <div class="service-card">
+        <span class="service-icon">☁️</span>
         <h3>Cloud Cost Optimisation</h3>
-        <p>Reduce cloud costs while enhancing performance with tailored strategies to optimize your cloud database infrastructure.</p>
+        <p>Reduce spend while improving throughput with right-sizing and storage efficiency tactics.</p>
+        <ul class="service-list">
+          <li>Workload right-sizing</li>
+          <li>Storage tier strategy</li>
+          <li>Spend governance</li>
+        </ul>
         <a href="#contact" class="service-link">Optimize →</a>
       </div>
       <div class="service-card">
+        <span class="service-icon">🧰</span>
         <h3>Database Support</h3>
-        <p>Proactive support including hotfixes, troubleshooting, performance tuning, and critical patching with defined SLA response times.</p>
+        <p>Proactive support including hotfixes, troubleshooting, and performance tuning.</p>
+        <ul class="service-list">
+          <li>Priority break/fix</li>
+          <li>Performance baselining</li>
+          <li>Change management</li>
+        </ul>
         <a href="#contact" class="service-link">Support →</a>
       </div>
     </div>
