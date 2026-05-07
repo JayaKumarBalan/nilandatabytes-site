@@ -113,7 +113,8 @@
       width: 40px;
       height: 40px;
       flex-shrink: 0;
-      color: #0d9488;
+      display: block;
+      object-fit: contain;
     }
     .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em; color: inherit; line-height: 1.2; }
     .logo-tagline { font-size: 0.7rem; color: var(--text-muted); font-weight: 500; margin-top: 0.1rem; }
@@ -741,12 +742,7 @@
     <header class="header" id="header">
       <div class="header-inner">
         <a href="#" class="logo-wrap">
-          <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="40" height="40" rx="10" fill="currentColor" opacity="0.2"/>
-            <path d="M20 10c-4 0-7 1.8-7 4v12c0 2.2 3 4 7 4s7-1.8 7-4V14c0-2.2-3-4-7-4z" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M13 18c0 2.2 3 4 7 4s7-1.8 7-4" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M13 26c0 2.2 3 4 7 4s7-1.8 7-4" stroke="currentColor" stroke-width="2" fill="none"/>
-          </svg>
+          <img src="logo.svg" alt="Nilan DataBytes logo" class="logo-icon" />
           <div class="logo-block">
             <span class="logo">Nilan DataBytes</span>
             <span class="logo-tagline">Database Support</span>
