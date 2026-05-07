@@ -266,13 +266,21 @@
       font-size: clamp(2.5rem, 4.5vw, 3.25rem);
       font-weight: 700;
       line-height: 1.15;
-      margin: 0 0 1.25rem;
+      margin: 0 0 1rem;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.2s forwards;
     }
     .hero h1 .line1 { color: #3b82f6; display: block; }
     .hero h1 .line2 { color: #1e40af; display: block; }
     .hero h1 .line3 { color: #1e3a8a; display: block; }
+    .hero-subtitle {
+      margin: 0 0 1rem;
+      color: #0f766e;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out 0.25s forwards;
+    }
     .hero-desc {
       color: #334155;
       font-size: 1.05rem;
@@ -393,18 +401,79 @@
 
     /* Sections */
     section {
-      padding: 80px 24px;
+      padding: 100px 24px;
       max-width: var(--container);
       margin: 0 auto;
       width: 100%;
     }
+    .section-separator {
+      border-top: 1px solid var(--border);
+      padding-top: 80px;
+    }
     .section-label { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
     .section-title { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; margin: 0 0 1rem; }
     .section-desc { color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+    .form-explanation { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
+    .trust-note { margin-top: 1rem; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
 
     /* Trusted */
     .trusted { background: var(--bg-section); }
     .trusted-inner { max-width: var(--container); margin: 0 auto; }
+    .trust-badges {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 1rem 1.15rem;
+      background: #ffffff;
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(13, 148, 136, 0.06);
+      color: #0f172a;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .trust-badge::before {
+      content: '•';
+      margin-right: 0.65rem;
+      color: #0d9488;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .testimonial-card {
+      margin-top: 1.75rem;
+      padding: 1.5rem;
+      background: #ffffff;
+      border: 1px solid rgba(13, 148, 136, 0.12);
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(13, 148, 136, 0.08);
+      max-width: 760px;
+    }
+    .testimonial-card p {
+      margin: 0 0 0.75rem;
+      color: #0f172a;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .testimonial-card span {
+      color: #475569;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .client-list {
+      margin-top: 1rem;
+      color: #475569;
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.7;
+    }
+    .client-list strong {
+      color: #0d9488;
+    }
 
     /* Stats */
     .stats {
@@ -428,6 +497,34 @@
     .stat-card strong { display: block; font-size: 1.75rem; color: var(--accent); margin-bottom: 0.25rem; }
     .stat-card span { font-size: 0.9rem; color: var(--text-muted); }
 
+    .results { background: var(--bg-section); }
+    .results-inner { max-width: var(--container); margin: 0 auto; }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .result-card {
+      padding: 1.5rem;
+      background: #ffffff;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      text-align: center;
+    }
+    .result-card strong {
+      display: block;
+      font-size: 2rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+    .result-card span {
+      color: #475569;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
     /* About */
     .about {
       background: var(--bg-section);
@@ -443,6 +540,7 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
+      margin-bottom: 2rem;
     }
     .tool-card {
       background: var(--bg-card);
@@ -478,6 +576,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
+      margin-bottom: 2rem;
     }
     .service-card {
       background: var(--bg-card);
@@ -494,7 +593,9 @@
     }
     .service-card h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
     .service-card p { color: var(--text-muted); margin: 0 0 1rem; font-size: 0.95rem; }
-    .service-link { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
+    .service-card .benefit { color: var(--accent); font-weight: 600; margin: 0 0 0.5rem; font-size: 0.9rem; }
+    .service-link { font-size: 0.9rem; font-weight: 600; color: #1e293b; transition: color 0.2s; }
+    .service-link:hover { color: var(--accent); }
 
     /* Tech Stack */
     .tech { background: var(--bg); }
@@ -745,7 +846,7 @@
           <img src="logo.svg" alt="Nilan DataBytes logo" class="logo-icon" />
           <div class="logo-block">
             <span class="logo">Nilan DataBytes</span>
-            <span class="logo-tagline">Database Support</span>
+            <span class="logo-tagline">Database Engineering & ETL Consulting</span>
           </div>
         </a>
         <nav class="nav">
@@ -759,7 +860,7 @@
           <a href="#contact" class="btn-nav">Get in Touch</a>
           <a href="#contact" class="btn-chevron" aria-label="Contact">→</a>
         </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" type="button">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" type="button">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -774,16 +875,17 @@
           <span class="line2">Empower Your</span>
           <span class="line3">Database</span>
         </h1>
-        <p class="hero-desc">Nilan DataBytes provides expert database management services to optimize performance, reduce costs, and ensure data security, allowing you to focus on core business growth.</p>
+        <p class="hero-subtitle">Database consulting and engineering-led solutions for mission-critical systems.</p>
+        <p class="hero-desc">Nilan DataBytes delivers enterprise database engineering, ETL pipeline design, and cloud migration support. We optimize performance, reduce risk, and keep your data infrastructure reliable.</p>
         <div class="hero-pill-wrap">
-          <span class="hero-pill">🛟 24/7 Support</span>
-          <span class="hero-pill">👑 Reliable</span>
-          <span class="hero-pill">📈 Scalable</span>
-          <span class="hero-pill">🔒 Secure</span>
+          <span class="hero-pill">🧠 Database consulting</span>
+          <span class="hero-pill">⚙️ Engineering-led solutions</span>
+          <span class="hero-pill">📊 ETL pipeline reliability</span>
+          <span class="hero-pill">🛡️ 24/7 managed DB operations</span>
         </div>
         <div class="hero-btns">
-          <a href="#contact" class="btn-primary">Get in Touch</a>
-          <a href="#projects" class="btn-secondary">Read Case Studies →</a>
+          <a href="#contact" class="btn-primary">Schedule a DB Audit</a>
+          <a href="#projects" class="btn-secondary">View Case Studies →</a>
         </div>
       </div>
       <div class="hero-illus">
@@ -927,17 +1029,50 @@
     <div class="trusted-inner">
       <p class="section-label">Trusted by Industry Leaders</p>
       <h2 class="section-title">Your Trusted Database Partner</h2>
+      <div class="trust-badges">
+        <div class="trust-badge">SLA-backed database engineering</div>
+        <div class="trust-badge">Zero-downtime migrations</div>
+        <div class="trust-badge">ETL and analytics reliability</div>
+        <div class="trust-badge">Compliance-ready data platforms</div>
+      </div>
       <p class="section-desc">With years of expertise, we are your trusted database management partner. We serve clients across industries, overseeing mission-critical databases and delivering enterprise-grade support for SQL Server, PostgreSQL, MySQL, and cloud platforms.</p>
+      <div class="client-list">Trusted by teams at <strong>Ellow.io</strong>, <strong>NttData</strong>, <strong>PelsoftLabs</strong>, and <strong>Dignity Aspire</strong>.</div>
+      <div class="testimonial-card">
+        <p>“Nilan DataBytes stabilized our data environment, improved query performance, and completed a complex cloud migration on schedule. Their engineering-led approach gave us the confidence to scale safely.”</p>
+        <span>— Head of Data Engineering, Global Retail Platform</span>
+      </div>
     </div>
   </section>
 
   <section id="stats" class="stats animate-on-scroll">
     <div class="stats-grid">
-      <div class="stat-card"><strong>4+</strong><span>Years Expertise</span></div>
-      <div class="stat-card"><strong>50+</strong><span>Happy Clients</span></div>
-      <div class="stat-card"><strong>100+</strong><span>Migrations Done</span></div>
+      <div class="stat-card"><strong>16+</strong><span>Years Expertise</span></div>
+      <div class="stat-card"><strong>10+</strong><span>Happy Clients</span></div>
+      <div class="stat-card"><strong>50+</strong><span>Migrations Done</span></div>
       <div class="stat-card"><strong>24/7</strong><span>Support Available</span></div>
       <div class="stat-card"><strong>99.9%</strong><span>Uptime Target</span></div>
+    </div>
+  </section>
+
+  <section id="results" class="results animate-on-scroll section-separator">
+    <div class="results-inner">
+      <p class="section-label">Real Impact</p>
+      <h2 class="section-title">Database results that matter</h2>
+      <p class="section-desc">Our engineering-led approach delivers measurable improvements in performance, cost, and migration success.</p>
+      <div class="result-grid">
+        <div class="result-card">
+          <strong>60%</strong>
+          <span>Reduced query latency across production environments</span>
+        </div>
+        <div class="result-card">
+          <strong>30%</strong>
+          <span>Cut cloud database costs with optimized architecture</span>
+        </div>
+        <div class="result-card">
+          <strong>50+</strong>
+          <span>Successful database migrations completed</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -946,12 +1081,12 @@
       <p class="section-label">About Us</p>
       <h2 class="section-title">Expert Database Management & Support</h2>
       <p class="section-desc">Building data solutions that make a real impact</p>
-      <p>At Nilan DataBytes, we are committed to creating robust, high-performing database solutions. Our company specializes in database administration, development, migration, and engineering—leveraging SQL Server, PostgreSQL, MySQL, Azure SQL, ETL tools, and cloud infrastructure to deliver scalable, efficient, and tailored solutions.</p>
-      <p>Our passion lies in data integrity, performance tuning, and staying ahead of tech trends. We believe in turning complex data challenges into reliable, maintainable systems.</p>
+      <p>At Nilan DataBytes, we are committed to delivering database consulting, engineering, and support for robust, high-performing data solutions. Our services include database architecture, ETL strategy, cloud migration planning, and managed operations, backed by deep expertise in SQL Server, PostgreSQL, MySQL, Azure SQL, and modern data platforms.</p>
+      <p>Our passion lies in data integrity, performance tuning, and turning complex data challenges into reliable, maintainable systems with a consulting-first approach.</p>
     </div>
   </section>
 
-  <section id="how-we-work" class="how-we-work animate-on-scroll">
+  <section id="how-we-work" class="how-we-work animate-on-scroll section-separator">
     <div style="max-width: var(--container); margin: 0 auto;">
       <p class="section-label">How We Work</p>
       <h2 class="section-title">Methodology & Tools</h2>
@@ -982,45 +1117,51 @@
     </div>
   </section>
 
-  <section id="services" class="services animate-on-scroll">
+  <section id="services" class="services animate-on-scroll section-separator">
     <p class="section-label">Services We Provide</p>
     <h2 class="section-title">Take Control of Your Database Environment</h2>
     <p class="section-desc">We are a team of expert database administrators passionate about helping businesses optimize, secure, and scale their data infrastructure.</p>
     <div class="services-grid">
       <div class="service-card">
-        <h3>Expert Database Management</h3>
+        <h3>Database Engineering</h3>
+        <p class="benefit">Custom database architecture and optimization for scalable systems.</p>
         <p>Comprehensive care for your databases: installation, optimization, security, and 24/7 support. Focus on your business while we keep your databases running smoothly.</p>
         <a href="#contact" class="service-link">Explore →</a>
       </div>
       <div class="service-card">
-        <h3>Performance & Security Audit</h3>
+        <h3>Performance Audits</h3>
+        <p class="benefit">Identify and resolve performance bottlenecks for faster queries.</p>
         <p>Identify bottlenecks like slow queries and inefficient indexing. Secure your databases with proactive audits to safeguard valuable data.</p>
         <a href="#contact" class="service-link">Audit →</a>
       </div>
       <div class="service-card">
-        <h3>Consulting Services</h3>
+        <h3>ETL Architecture</h3>
+        <p class="benefit">Design reliable ETL pipelines for seamless data flow.</p>
         <p>Strategic guidance to optimize performance, security, and scalability, with actionable recommendations tailored to your database needs.</p>
         <a href="#contact" class="service-link">Consult →</a>
       </div>
       <div class="service-card">
-        <h3>Remote DBA</h3>
+        <h3>Managed DBA Services</h3>
+        <p class="benefit">24/7 monitoring and maintenance without full-time hires.</p>
         <p>24/7 expert monitoring, support, and maintenance without hiring full-time staff, ensuring database availability and optimization.</p>
         <a href="#contact" class="service-link">Monitor →</a>
       </div>
       <div class="service-card">
-        <h3>Cloud Cost Optimisation</h3>
+        <h3>Migration & Cloud Modernization</h3>
+        <p class="benefit">Seamless cloud migrations with cost optimization.</p>
         <p>Reduce cloud costs while enhancing performance with tailored strategies to optimize your cloud database infrastructure.</p>
         <a href="#contact" class="service-link">Optimize →</a>
       </div>
       <div class="service-card">
-        <h3>Database Support</h3>
+        <h3>Database Reliability Engineering</h3>
+        <p class="benefit">Proactive security measures and compliance audits.</p>
         <p>Proactive support including hotfixes, troubleshooting, performance tuning, and critical patching with defined SLA response times.</p>
         <a href="#contact" class="service-link">Support →</a>
       </div>
     </div>
   </section>
 
-  <section id="skills" class="tech animate-on-scroll">
+  <section id="skills" class="tech animate-on-scroll section-separator">
     <p class="section-label">Technologies We Help Manage</p>
     <h2 class="section-title">We've migrated databases to the cloud, managing millions of daily transactions</h2>
     <p class="section-desc">Discover solutions for SQL Server, PostgreSQL, MySQL, MongoDB, Azure SQL, and more.</p>
@@ -1074,7 +1215,16 @@
     <div class="projects-grid">
       <div class="project-card">
         <a href="#">
-          <div class="project-thumb">📊</div>
+          <div class="project-thumb">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="24" cy="12" rx="16" ry="8" fill="#0d9488" opacity="0.2"/>
+              <ellipse cx="24" cy="12" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
+              <ellipse cx="24" cy="24" rx="16" ry="8" fill="#0d9488" opacity="0.15"/>
+              <ellipse cx="24" cy="24" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
+              <ellipse cx="24" cy="36" rx="16" ry="8" fill="#0d9488" opacity="0.1"/>
+              <ellipse cx="24" cy="36" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
           <div class="project-content">
             <span class="project-tag">DATA WAREHOUSE</span>
             <h3>Enterprise Data Warehouse</h3>
@@ -1086,7 +1236,14 @@
       </div>
       <div class="project-card">
         <a href="#">
-          <div class="project-thumb">🔄</div>
+          <div class="project-thumb">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 28c0 4-4 8-8 8s-8-4-8-8c0-4 4-8 8-8s8 4 8 8z" fill="#0d9488" opacity="0.2"/>
+              <path d="M24 20c4 0 8 4 8 8s-4 8-8 8-8-4-8-8 4-8 8-8z" stroke="#0d9488" stroke-width="2" fill="none"/>
+              <path d="M16 24h-4m4 0l-2-2m2 2l-2 2" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M32 24h4m-4 0l2-2m-2 2l2 2" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div class="project-content">
             <span class="project-tag">MIGRATION</span>
             <h3>Legacy to Cloud Migration</h3>
@@ -1098,7 +1255,11 @@
       </div>
       <div class="project-card">
         <a href="#">
-          <div class="project-thumb">⚡</div>
+          <div class="project-thumb">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 8l-8 16h16l-8 16" stroke="#0d9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0d9488" opacity="0.2"/>
+            </svg>
+          </div>
           <div class="project-content">
             <span class="project-tag">PERFORMANCE</span>
             <h3>Query & Index Optimization</h3>
@@ -1136,8 +1297,9 @@
 
   <section id="contact" class="contact animate-on-scroll">
     <p class="section-label">Talk to a Database Expert Today</p>
-    <h2 class="section-title">Need Expert Database Solutions?</h2>
+    <h2 class="section-title">Ready to Transform Your Database?</h2>
     <p class="section-desc">Database solutions provided by Nilan DataBytes expert team</p>
+    <p class="form-explanation">Tell us your database platform and challenge</p>
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Nilan DataBytes</h3>
@@ -1146,6 +1308,7 @@
         <a href="https://wa.me/9715149369" target="_blank" rel="noopener">Chat on WhatsApp for project inquiries</a>
         <a href="mailto:contact@nilandatabytes.com">contact@nilandatabytes.com</a>
         <a href="#" target="_blank" rel="noopener">https://www.linkedin.com/company/113022948</a>
+        <p class="trust-note">Free 30-minute technical consultation available</p>
       </div>
       <form class="contact-form" action="#" method="post">
         <input type="text" name="name" placeholder="Name *" required />
@@ -1155,8 +1318,8 @@
           <option value="">Select Database *</option>
           <option value="sqlserver">SQL Server</option>
           <option value="oracle">Oracle</option>
-          <option value="FireBase">FireBase</option>
-          <option value="ibmdb2">IBM DB2</option>
+          <option value="firebase">Firebase</option>
+          <option value="ibm-db2">IBM DB2</option>
           <option value="postgresql">PostgreSQL</option>
           <option value="mysql">MySQL</option>
           <option value="mongodb">MongoDB</option>
@@ -1191,12 +1354,7 @@
       </div>
       <div class="footer-bottom">
         <a href="#" class="logo-wrap" style="justify-content:center;">
-          <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;">
-            <rect width="40" height="40" rx="10" fill="currentColor" opacity="0.12"/>
-            <path d="M20 10c-4 0-7 1.8-7 4v12c0 2.2 3 4 7 4s7-1.8 7-4V14c0-2.2-3-4-7-4z" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M13 18c0 2.2 3 4 7 4s7-1.8 7-4" stroke="currentColor" stroke-width="2" fill="none"/>
-            <path d="M13 26c0 2.2 3 4 7 4s7-1.8 7-4" stroke="currentColor" stroke-width="2" fill="none"/>
-          </svg>
+          <img src="logo.svg" alt="Nilan DataBytes logo" class="logo-icon" style="width:24px;height:24px;" />
           <span class="logo">NILAN DATABYTES</span>
         </a>
         <p>© <span id="year"></span> Nilan DataBytes. All rights reserved.</p>
@@ -1240,6 +1398,7 @@
       navMobile.classList.add('open');
       navOverlay.classList.add('open');
       navMobile.setAttribute('aria-hidden', 'false');
+      menuToggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
     function closeMenu() {
@@ -1247,6 +1406,7 @@
       navMobile.classList.remove('open');
       navOverlay.classList.remove('open');
       navMobile.setAttribute('aria-hidden', 'true');
+      menuToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
 
