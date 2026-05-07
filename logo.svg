@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="Nilan DataBytes Logo">
+  <defs>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#6ee7b7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon: stylized database/data stack with N letterform -->
+  <g transform="translate(0, 10)">
+    <!-- Outer rounded square background -->
+    <rect x="4" y="4" width="92" height="92" rx="18" ry="18" fill="url(#iconGrad)" />
+
+    <!-- Data stack layers (cylinders as flat rectangles with rounded caps) -->
+    <!-- Layer 3 (bottom) -->
+    <rect x="22" y="62" width="56" height="13" rx="6" fill="rgba(255,255,255,0.18)" />
+    <!-- Layer 2 (middle) -->
+    <rect x="22" y="45" width="56" height="13" rx="6" fill="rgba(255,255,255,0.32)" />
+    <!-- Layer 1 (top) -->
+    <rect x="22" y="28" width="56" height="13" rx="6" fill="rgba(255,255,255,0.92)" />
+
+    <!-- N letterform overlay on top layer -->
+    <text x="31" y="41" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" fill="#059669" letter-spacing="0">NDB</text>
+
+    <!-- Small data dots on lower layers -->
+    <circle cx="30" cy="51.5" r="2.5" fill="rgba(255,255,255,0.7)" />
+    <circle cx="38" cy="51.5" r="2.5" fill="rgba(255,255,255,0.5)" />
+    <circle cx="46" cy="51.5" r="2.5" fill="rgba(255,255,255,0.35)" />
+
+    <circle cx="30" cy="68.5" r="2.5" fill="rgba(255,255,255,0.5)" />
+    <circle cx="38" cy="68.5" r="2.5" fill="rgba(255,255,255,0.35)" />
+    <circle cx="46" cy="68.5" r="2.5" fill="rgba(255,255,255,0.25)" />
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(112, 0)">
+    <!-- Company name: Nilan DataBytes -->
+    <!-- "Nilan" in dark -->
+    <text x="0" y="52" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="36" font-weight="700" fill="#1e293b" letter-spacing="-0.5">Nilan</text>
+    <!-- "DataBytes" in accent -->
+    <text x="118" y="52" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="36" font-weight="700" fill="#10b981" letter-spacing="-0.5">DataBytes</text>
+
+    <!-- Divider line -->
+    <rect x="0" y="63" width="390" height="2.5" rx="1.25" fill="url(#accentLine)" />
+
+    <!-- Tagline -->
+    <text x="2" y="86" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13.5" font-weight="500" fill="#64748b" letter-spacing="2.5">DATABASE ADMINISTRATION · DEVELOPMENT · MIGRATION</text>
+  </g>
+</svg>
