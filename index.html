@@ -231,19 +231,7 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
-      background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 55%),
-        radial-gradient(circle at 15% 60%, rgba(13, 148, 136, 0.12), transparent 45%),
-        linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #f0f9ff 50%, #ffffff 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23cbd5e1' stroke-width='1'%3E%3Cpath d='M0 0H240V240H0z'/%3E%3Cpath d='M60 0V240M120 0V240M180 0V240M0 60H240M0 120H240M0 180H240'/%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.12;
-      pointer-events: none;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #f0f9ff 50%, #ffffff 100%);
     }
     .hero-inner {
       max-width: var(--container);
@@ -254,7 +242,7 @@
       gap: 3rem;
       align-items: center;
     }
-    .hero-content { max-width: 580px; position: relative; z-index: 1; }
+    .hero-content { max-width: 560px; }
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -274,36 +262,24 @@
     }
     .hero-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
     .hero h1 {
-      font-size: clamp(2.7rem, 4.8vw, 3.6rem);
-      font-weight: 750;
+      font-size: clamp(2.5rem, 4.5vw, 3.25rem);
+      font-weight: 700;
       line-height: 1.15;
       margin: 0 0 1.25rem;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.2s forwards;
     }
-    .hero h1 .line1,
-    .hero h1 .line2,
-    .hero h1 .line3 { display: block; }
-    .hero h1 .line2 { color: #0f172a; }
-    .hero h1 .line3 {
-      background: linear-gradient(120deg, #2563eb, #0d9488);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    .hero h1 .line1 { color: #3b82f6; display: block; }
+    .hero h1 .line2 { color: #1e40af; display: block; }
+    .hero h1 .line3 { color: #1e3a8a; display: block; }
     .hero-desc {
       color: #334155;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       line-height: 1.7;
       max-width: 520px;
       margin-bottom: 1.75rem;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.35s forwards;
-    }
-    .hero-subtitle {
-      font-size: 0.95rem;
-      color: #475569;
-      margin: 0 0 0.75rem;
     }
     .hero-btns {
       display: flex;
@@ -378,30 +354,6 @@
     }
     .hero-stat strong { color: #3b82f6; font-size: 1.25rem; }
     .hero-stat span { color: #64748b; font-size: 0.95rem; }
-    .hero-metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.6s forwards;
-    }
-    .hero-metric-card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 0.75rem 0.9rem;
-      box-shadow: var(--shadow);
-    }
-    .hero-metric-card strong {
-      display: block;
-      font-size: 1.1rem;
-      color: #0f172a;
-    }
-    .hero-metric-card span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
 
     /* Hero illustration */
     .hero-illus {
@@ -409,44 +361,27 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 320px;
+      min-height: 420px;
       opacity: 0;
       animation: fadeInUp 0.6s ease-out 0.3s forwards;
-      z-index: 1;
+      overflow: visible;
     }
-    .hero-db-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      max-width: 380px;
-      margin: 0 auto;
+    .hero-iso-illus {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+      filter: drop-shadow(0 8px 32px rgba(13,148,136,0.10));
     }
-    .hero-db-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 16px;
-      padding: 1rem;
-      border: 1px solid rgba(13,148,136,0.2);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 110px;
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hero-db-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(13,148,136,0.15);
-    }
-    .hero-db-card svg { width: 100%; height: auto; max-height: 90px; }
-    .hero-db-card .hero-db-chart {
-      position: absolute;
-      bottom: 0.5rem;
-      right: 0.5rem;
-      width: 36px;
-      height: 36px;
-      max-height: none;
-    }
+    @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes floatD { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+    @keyframes floatE { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .iso-center  { animation: floatA 4s ease-in-out infinite; }
+    .iso-card-tl { animation: floatB 4.5s ease-in-out infinite 0.3s; }
+    .iso-card-tr { animation: floatC 3.8s ease-in-out infinite 0.8s; }
+    .iso-card-bl { animation: floatD 4.2s ease-in-out infinite 1.1s; }
+    .iso-card-br { animation: floatE 4.6s ease-in-out infinite 0.5s; }
     .hero-float {
       position: absolute;
       animation: float 4s ease-in-out infinite;
@@ -544,41 +479,20 @@
       margin-top: 2rem;
     }
     .service-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      border-radius: 18px;
-      padding: 1.6rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
     }
     .service-card:hover {
-      border-color: rgba(37, 99, 235, 0.4);
+      border-color: var(--accent);
       transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
     }
-    .service-card h3 { font-size: 1.15rem; margin: 0; }
-    .service-card p { color: var(--text-muted); margin: 0; font-size: 0.95rem; }
-    .service-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(37, 99, 235, 0.12);
-      color: #2563eb;
-      font-size: 1.3rem;
-    }
-    .service-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-    .service-list li { margin-bottom: 0.35rem; }
+    .service-card h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+    .service-card p { color: var(--text-muted); margin: 0 0 1rem; font-size: 0.95rem; }
     .service-link { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
 
     /* Tech Stack */
@@ -793,9 +707,7 @@
       .hero-desc { margin-left: auto; margin-right: auto; text-align: center; }
       .hero-btns { justify-content: center; }
       .hero-stat { justify-content: center; }
-      .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-illus { order: -1; max-width: 340px; margin: 0 auto; min-height: 260px; }
-      .hero-db-grid { gap: 0.75rem; }
+      .hero-illus { order: -1; max-width: 420px; margin: 0 auto; min-height: 360px; }
       .hero-db-card { min-height: 90px; padding: 0.75rem; }
       .hero-float { display: none; }
       .nav-mobile { display: flex; }
@@ -808,7 +720,6 @@
       .hero { padding: 100px 20px 60px; }
       .hero-btns { flex-direction: column; }
       .hero-btns .btn { width: 100%; justify-content: center; min-height: 48px; }
-      .hero-metrics { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .tools-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
@@ -862,70 +773,156 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-content">
-        <div class="hero-badge">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M10 2l2.4 4.8L18 8l-4 4.2.9 5.8L10 15.7 5.1 18 6 12.2 2 8l5.6-1.2L10 2z" stroke="currentColor" stroke-width="1.4" fill="currentColor" opacity="0.15"/>
-            <path d="M10 4.5l1.5 3 3.4.7-2.5 2.6.6 3.5L10 12.6 7 14.3l.6-3.5-2.5-2.6 3.4-.7 1.5-3z" fill="currentColor"/>
-          </svg>
-          Database reliability, engineered.
-        </div>
         <h1>
-          <span class="line1">Modernize & scale</span>
-          <span class="line2">your database estate</span>
-          <span class="line3">with confidence</span>
+          <span class="line1">Optimize, Secure, &</span>
+          <span class="line2">Empower Your</span>
+          <span class="line3">Database</span>
         </h1>
-        <p class="hero-subtitle">Enterprise-grade DBA, performance, and cloud migration services.</p>
-        <p class="hero-desc">Nilan DataBytes delivers proactive database operations, performance engineering, and cloud optimization so your teams ship faster with lower risk and predictable costs.</p>
+        <p class="hero-desc">Nilan DataBytes provides expert database management services to optimize performance, reduce costs, and ensure data security, allowing you to focus on core business growth.</p>
         <div class="hero-pill-wrap">
-          <span class="hero-pill">⚡ 99.9% uptime focus</span>
-          <span class="hero-pill">🛡️ Compliance-ready</span>
-          <span class="hero-pill">📊 Performance insights</span>
-          <span class="hero-pill">☁️ Cloud-native expertise</span>
+          <span class="hero-pill">🛟 24/7 Support</span>
+          <span class="hero-pill">👑 Reliable</span>
+          <span class="hero-pill">📈 Scalable</span>
+          <span class="hero-pill">🔒 Secure</span>
         </div>
         <div class="hero-btns">
-          <a href="#contact" class="btn-primary">Schedule a Strategy Call</a>
-          <a href="#services" class="btn-secondary">Explore Services →</a>
-        </div>
-        <div class="hero-metrics">
-          <div class="hero-metric-card">
-            <strong>24/7</strong>
-            <span>Monitoring & response</span>
-          </div>
-          <div class="hero-metric-card">
-            <strong>50+</strong>
-            <span>Production databases managed</span>
-          </div>
-          <div class="hero-metric-card">
-            <strong>99.9%</strong>
-            <span>Reliability target</span>
-          </div>
+          <a href="#contact" class="btn-primary">Get in Touch</a>
+          <a href="#projects" class="btn-secondary">Read Case Studies →</a>
         </div>
       </div>
       <div class="hero-illus">
-        <div class="hero-float hero-float-1">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect width="44" height="44" rx="10" fill="#ccfbf1"/><path d="M14 18h10M14 22h14M14 26h8" stroke="#0d9488" stroke-width="2"/></svg>
-        </div>
-        <div class="hero-float hero-float-2">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#ccfbf1"/><path d="M20 12L26 24H14L20 12Z" fill="#0d9488"/></svg>
-        </div>
-        <div class="hero-float hero-float-3">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><rect width="38" height="38" rx="8" fill="#ccfbf1"/><path d="M12 14h14v2H12v-2zm0 6h10v2H12v-2z" stroke="#0d9488" stroke-width="2"/></svg>
-        </div>
-        <div class="hero-db-grid">
-          <div class="hero-db-card">
-            <svg viewBox="0 0 80 85" fill="none"><ellipse cx="40" cy="18" rx="22" ry="6" stroke="#0d9488" stroke-width="2" fill="none"/><ellipse cx="40" cy="34" rx="22" ry="6" stroke="#0d9488" stroke-width="2" fill="none"/><ellipse cx="40" cy="50" rx="22" ry="6" stroke="#0d9488" stroke-width="2" fill="none"/><path d="M18 18v32c0 3.3 9.8 6 22 6s22-2.7 22-6V18" stroke="#0d9488" stroke-width="2" fill="none"/><rect x="30" y="58" width="20" height="6" rx="2" fill="#5eead4"/><rect x="32" y="65" width="16" height="4" rx="1" fill="#99f6e4"/></svg>
-            <svg class="hero-db-chart" viewBox="0 0 32 32" fill="none"><rect x="2" y="18" width="5" height="10" rx="1.5" fill="#0d9488"/><rect x="10" y="12" width="5" height="16" rx="1.5" fill="#14b8a6"/><rect x="18" y="6" width="5" height="22" rx="1.5" fill="#2dd4bf"/></svg>
-          </div>
-          <div class="hero-db-card">
-            <svg viewBox="0 0 80 80" fill="none"><ellipse cx="40" cy="52" rx="28" ry="8" fill="#e0f2fe"/><path d="M28 40c0-6 6-12 12-12s12 6 12 12" stroke="#0d9488" stroke-width="2.5" fill="none"/><path d="M36 38c0-2 2-4 4-4s4 2 4 4" stroke="#14b8a6" stroke-width="2" fill="none"/><path d="M38 36l4-6 4 6" stroke="#0d9488" stroke-width="1.5" fill="none"/></svg>
-          </div>
-          <div class="hero-db-card">
-            <svg viewBox="0 0 80 80" fill="none"><path d="M40 12 L62 32 L62 52 L40 72 L18 52 L18 32 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/><path d="M40 22 L54 32 L54 48 L40 58 L26 48 L26 32 Z" fill="#fff"/><path d="M36 38 L40 34 L44 38 L40 42 Z" fill="#0d9488"/></svg>
-          </div>
-          <div class="hero-db-card">
-            <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="28" fill="#ccfbf1"/><path d="M40 20 L40 60 M24 40 L56 40" stroke="#0d9488" stroke-width="2"/><path d="M32 52 L40 36 L48 52" stroke="#0d9488" stroke-width="2" fill="none"/><circle cx="40" cy="32" r="5" fill="#0d9488"/></svg>
-          </div>
-        </div>
+        <svg class="hero-iso-illus" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
+          <defs>
+            <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0d9488" flood-opacity="0.12"/>
+            </filter>
+            <filter id="center-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0d9488" flood-opacity="0.18"/>
+            </filter>
+            <linearGradient id="platGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#f0fdf9"/>
+              <stop offset="100%" stop-color="#ccfbf1"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Background blobs -->
+          <ellipse cx="200" cy="200" rx="170" ry="160" fill="#e6fffa" opacity="0.35"/>
+          <ellipse cx="310" cy="90"  rx="60"  ry="45"  fill="#ccfbf1" opacity="0.4"/>
+          <ellipse cx="90"  cy="310" rx="55"  ry="40"  fill="#ccfbf1" opacity="0.3"/>
+
+          <!-- Dashed lines from center (200,200) to each satellite center -->
+          <line x1="200" y1="200" x2="69"  y2="65"  stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
+          <line x1="200" y1="200" x2="331" y2="65"  stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
+          <line x1="200" y1="200" x2="69"  y2="335" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
+          <line x1="200" y1="200" x2="331" y2="335" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
+
+          <!-- ── TOP-LEFT: ETL Pipeline (outer g = position, inner g = animation) ── -->
+          <g transform="translate(10, 10)">
+            <g class="iso-card-tl">
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
+              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">ETL Pipeline</text>
+              <rect x="12" y="22" width="24" height="28" rx="5" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
+              <line x1="17" y1="31" x2="31" y2="31" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="17" y1="36" x2="29" y2="36" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="17" y1="41" x2="27" y2="41" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M38 36 L47 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <path d="M44 32 L48 36 L44 40" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="59" cy="36" r="10" fill="#e6fffa" stroke="#0d9488" stroke-width="2"/>
+              <circle cx="59" cy="36" r="4" fill="#0d9488"/>
+              <line x1="59" y1="23" x2="59" y2="26" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <line x1="59" y1="46" x2="59" y2="49" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <line x1="46" y1="36" x2="49" y2="36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <line x1="69" y1="36" x2="72" y2="36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <path d="M71 36 L80 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <path d="M77 32 L81 36 L77 40" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="82" y="22" width="24" height="28" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+              <line x1="87" y1="31" x2="101" y2="31" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="87" y1="36" x2="99"  y2="36" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="87" y1="41" x2="97"  y2="41" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+          </g>
+
+          <!-- ── TOP-RIGHT: Cloud ── -->
+          <g transform="translate(272, 10)">
+            <g class="iso-card-tr">
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
+              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">Cloud</text>
+              <path d="M82 52 C88 52 93 47 93 41 C93 35 88 30 82 30 C81 24 76 20 69 20 C61 20 55 26 55 34 C52 34 47 37 47 42 C47 48 52 52 59 52 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
+              <line x1="63" y1="72" x2="63" y2="60" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
+              <path d="M57 65 L63 59 L69 65" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="77" y1="60" x2="77" y2="72" stroke="#14b8a6" stroke-width="2" stroke-linecap="round"/>
+              <path d="M71 67 L77 73 L83 67" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+          </g>
+
+          <!-- ── CENTER: Database (large) ── -->
+          <g transform="translate(125, 125)">
+            <g class="iso-center">
+              <rect x="-10" y="-10" width="170" height="170" rx="28" fill="white" filter="url(#center-shadow)"/>
+              <rect x="-10" y="-10" width="170" height="170" rx="28" fill="url(#platGrad)" opacity="0.5"/>
+              <text x="75" y="152" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" font-weight="700" fill="#0d9488">Database</text>
+              <ellipse cx="75" cy="34" rx="38" ry="11" fill="#2dd4bf" opacity="0.9"/>
+              <ellipse cx="75" cy="34" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
+              <rect x="37" y="34" width="76" height="30" fill="#ccfbf1"/>
+              <line x1="37" y1="34" x2="37" y2="64" stroke="#0d9488" stroke-width="2"/>
+              <line x1="113" y1="34" x2="113" y2="64" stroke="#0d9488" stroke-width="2"/>
+              <ellipse cx="75" cy="64" rx="38" ry="11" fill="#99f6e4"/>
+              <ellipse cx="75" cy="64" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
+              <rect x="37" y="64" width="76" height="26" fill="#e6fffa"/>
+              <line x1="37" y1="64" x2="37" y2="90" stroke="#0d9488" stroke-width="2"/>
+              <line x1="113" y1="64" x2="113" y2="90" stroke="#0d9488" stroke-width="2"/>
+              <ellipse cx="75" cy="90" rx="38" ry="11" fill="#ccfbf1"/>
+              <ellipse cx="75" cy="90" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
+              <circle cx="100" cy="34" r="4" fill="#0d9488"/>
+              <circle cx="100" cy="64" r="4" fill="#14b8a6"/>
+              <circle cx="100" cy="90" r="4" fill="#2dd4bf"/>
+            </g>
+          </g>
+
+          <!-- ── BOTTOM-LEFT: Reports ── -->
+          <g transform="translate(10, 280)">
+            <g class="iso-card-bl">
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
+              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
+              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">Reports</text>
+              <rect x="28" y="12" width="50" height="64" rx="6" fill="#e6fffa" stroke="#0d9488" stroke-width="1.5"/>
+              <path d="M52 12 L78 28 L52 28 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5" stroke-linejoin="round"/>
+              <rect x="34" y="60" width="7"  height="12" rx="2" fill="#0d9488"/>
+              <rect x="44" y="52" width="7"  height="20" rx="2" fill="#14b8a6"/>
+              <rect x="54" y="44" width="7"  height="28" rx="2" fill="#2dd4bf"/>
+              <rect x="64" y="48" width="7"  height="24" rx="2" fill="#0d9488" opacity="0.5"/>
+              <line x1="34" y1="32" x2="60" y2="32" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="34" y1="40" x2="54" y2="40" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+          </g>
+
+          <!-- ── BOTTOM-RIGHT: DB Admin ── -->
+          <g transform="translate(272, 280)">
+            <g class="iso-card-br">
+            <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
+            <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
+            <text x="59" y="96" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">DB Admin</text>
+            <!-- Server rack rows -->
+            <rect x="18" y="14" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
+            <circle cx="26" cy="22" r="3" fill="#0d9488"/>
+            <line x1="34" y1="19" x2="90" y2="19" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="34" y1="25" x2="80" y2="25" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
+
+            <rect x="18" y="34" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
+            <circle cx="26" cy="42" r="3" fill="#14b8a6"/>
+            <line x1="34" y1="39" x2="90" y2="39" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="34" y1="45" x2="76" y2="45" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
+
+            <rect x="18" y="54" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#2dd4bf" stroke-width="1.5"/>
+            <circle cx="26" cy="62" r="3" fill="#2dd4bf"/>
+            <line x1="34" y1="59" x2="90" y2="59" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="34" y1="65" x2="70" y2="65" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+          </g>
+
+        </svg>
       </div>
     </div>
   </section>
@@ -992,72 +989,36 @@
   <section id="services" class="services animate-on-scroll">
     <p class="section-label">Services We Provide</p>
     <h2 class="section-title">Take Control of Your Database Environment</h2>
-    <p class="section-desc">We design a tailored operating model for your databases, from day-zero architecture to day-two operations and continuous optimization.</p>
+    <p class="section-desc">We are a team of expert database administrators passionate about helping businesses optimize, secure, and scale their data infrastructure.</p>
     <div class="services-grid">
       <div class="service-card">
-        <span class="service-icon">🧭</span>
         <h3>Expert Database Management</h3>
-        <p>Comprehensive care for your databases: install, scale, secure, and automate with dedicated operational playbooks.</p>
-        <ul class="service-list">
-          <li>Environment baselines & standards</li>
-          <li>Reliability runbooks</li>
-          <li>High-availability planning</li>
-        </ul>
+        <p>Comprehensive care for your databases: installation, optimization, security, and 24/7 support. Focus on your business while we keep your databases running smoothly.</p>
         <a href="#contact" class="service-link">Explore →</a>
       </div>
       <div class="service-card">
-        <span class="service-icon">🔍</span>
         <h3>Performance & Security Audit</h3>
-        <p>Identify bottlenecks, reduce risk, and harden configurations with priority remediation plans.</p>
-        <ul class="service-list">
-          <li>Query profiling & tuning</li>
-          <li>Index health checks</li>
-          <li>Security posture review</li>
-        </ul>
+        <p>Identify bottlenecks like slow queries and inefficient indexing. Secure your databases with proactive audits to safeguard valuable data.</p>
         <a href="#contact" class="service-link">Audit →</a>
       </div>
       <div class="service-card">
-        <span class="service-icon">🧩</span>
         <h3>Consulting Services</h3>
-        <p>Strategic guidance for modernization, migrations, and data architecture improvements.</p>
-        <ul class="service-list">
-          <li>Migration blueprints</li>
-          <li>Capacity forecasting</li>
-          <li>Tooling selection</li>
-        </ul>
+        <p>Strategic guidance to optimize performance, security, and scalability, with actionable recommendations tailored to your database needs.</p>
         <a href="#contact" class="service-link">Consult →</a>
       </div>
       <div class="service-card">
-        <span class="service-icon">🛰️</span>
         <h3>Remote DBA</h3>
-        <p>24/7 expert monitoring, incident response, and maintenance without full-time headcount.</p>
-        <ul class="service-list">
-          <li>Incident response SLAs</li>
-          <li>Routine patching</li>
-          <li>Operational reporting</li>
-        </ul>
+        <p>24/7 expert monitoring, support, and maintenance without hiring full-time staff, ensuring database availability and optimization.</p>
         <a href="#contact" class="service-link">Monitor →</a>
       </div>
       <div class="service-card">
-        <span class="service-icon">☁️</span>
         <h3>Cloud Cost Optimisation</h3>
-        <p>Reduce spend while improving throughput with right-sizing and storage efficiency tactics.</p>
-        <ul class="service-list">
-          <li>Workload right-sizing</li>
-          <li>Storage tier strategy</li>
-          <li>Spend governance</li>
-        </ul>
+        <p>Reduce cloud costs while enhancing performance with tailored strategies to optimize your cloud database infrastructure.</p>
         <a href="#contact" class="service-link">Optimize →</a>
       </div>
       <div class="service-card">
-        <span class="service-icon">🧰</span>
         <h3>Database Support</h3>
-        <p>Proactive support including hotfixes, troubleshooting, and performance tuning.</p>
-        <ul class="service-list">
-          <li>Priority break/fix</li>
-          <li>Performance baselining</li>
-          <li>Change management</li>
-        </ul>
+        <p>Proactive support including hotfixes, troubleshooting, performance tuning, and critical patching with defined SLA response times.</p>
         <a href="#contact" class="service-link">Support →</a>
       </div>
     </div>
