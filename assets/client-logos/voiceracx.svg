@@ -1,0 +1,12 @@
+<svg width="240" height="72" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="voiceracx-title">
+  <title id="voiceracx-title">VOICERACX AI</title>
+  <rect width="240" height="72" rx="8" fill="#062F4F"/>
+  <circle cx="120" cy="21" r="15" fill="none" stroke="#4FE4CE" stroke-width="2"/>
+  <path d="M102 22C110 6 130 6 138 22" stroke="#9BD33C" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M104 25C112 11 128 11 136 25" stroke="#4FE4CE" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <path d="M107 29L114 16L120 31L126 14L133 29" stroke="#FFFFFF" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="39" y="50" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" letter-spacing="2.2">VOICERAC</text>
+  <text x="166" y="50" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">X</text>
+  <text x="187" y="45" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700">ai</text>
+  <text x="91" y="61" fill="#DDE7F0" font-family="Arial, Helvetica, sans-serif" font-size="7" font-weight="700" letter-spacing="2">A I  F U E L E D  C X</text>
+</svg>

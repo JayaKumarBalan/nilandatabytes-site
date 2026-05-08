@@ -1,0 +1,11 @@
+<svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="employee-two-title">
+  <title id="employee-two-title">Sample team member portrait</title>
+  <rect width="320" height="320" rx="24" fill="#ECFDF5"/>
+  <circle cx="160" cy="122" r="58" fill="#0D9488"/>
+  <path d="M66 320C78 240 111 202 160 202C209 202 242 240 254 320H66Z" fill="#0F766E"/>
+  <circle cx="160" cy="114" r="45" fill="#E8B78E"/>
+  <path d="M113 117C110 82 129 57 160 55C190 53 210 75 209 117C196 104 180 99 160 99C140 99 125 104 113 117Z" fill="#334155"/>
+  <circle cx="145" cy="121" r="4" fill="#111827"/>
+  <circle cx="176" cy="121" r="4" fill="#111827"/>
+  <path d="M146 147C155 154 166 154 175 147" stroke="#7C2D12" stroke-width="5" stroke-linecap="round"/>
+</svg>

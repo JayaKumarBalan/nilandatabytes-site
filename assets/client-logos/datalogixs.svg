@@ -1,0 +1,10 @@
+<svg width="240" height="72" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="datalogixs-title">
+  <title id="datalogixs-title">Datalogixs Technologies</title>
+  <rect width="240" height="72" rx="8" fill="#FFFFFF"/>
+  <path d="M33 45C23.6 45 16 37.4 16 28C16 18.6 23.6 11 33 11H48V23H33C30.2 23 28 25.2 28 28C28 30.8 30.2 33 33 33H48V45H33Z" fill="#16A9E1"/>
+  <path d="M48 11H61V45H48V11Z" fill="#16A9E1"/>
+  <circle cx="60" cy="56" r="7" fill="#16A9E1"/>
+  <text x="73" y="35" fill="#3B3B3D" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">data</text>
+  <text x="134" y="35" fill="#16A9E1" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="400">logixs</text>
+  <text x="76" y="58" fill="#A7A9AC" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400">Technologies</text>
+</svg>

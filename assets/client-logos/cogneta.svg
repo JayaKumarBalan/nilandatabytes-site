@@ -1,0 +1,11 @@
+<svg width="240" height="72" viewBox="0 0 240 72" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cogneta-title">
+  <title id="cogneta-title">Cogneta</title>
+  <rect width="240" height="72" rx="8" fill="#FFFFFF"/>
+  <text x="18" y="34" fill="#214D78" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" letter-spacing="0.5">cogn</text>
+  <text x="96" y="34" fill="#214D78" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" letter-spacing="0.5">eta</text>
+  <circle cx="91" cy="22" r="5" fill="#87C540"/>
+  <path d="M96 16V58" stroke="#87C540" stroke-width="3" stroke-linecap="round"/>
+  <path d="M24 46H128" stroke="#214D78" stroke-width="3" stroke-linecap="round"/>
+  <path d="M132 19C144 17 150 24 148 35C146 46 154 52 165 48" stroke="#9CA3AF" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <text x="111" y="55" fill="#214D78" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700">THINK EMERGE</text>
+</svg>
