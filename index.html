@@ -732,6 +732,43 @@
     }
     .contact-form textarea { min-height: 120px; resize: vertical; }
     .contact-form button { align-self: flex-start; cursor: pointer; }
+    .form-message {
+      display: block;
+      width: 100%;
+      padding: 1rem 1rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      min-height: 2.2rem;
+      line-height: 1.4;
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid transparent;
+      color: var(--text);
+      transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.95;
+    }
+    .form-message.success {
+      background: #ecfdf5;
+      border-color: #34d399;
+      color: #065f46;
+    }
+    .form-message.error {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
+    .form-message.sending {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+    .form-message.hidden {
+      opacity: 0;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+      transition: opacity 0.2s ease, max-height 0.2s ease, padding 0.2s ease;
+    }
 
     /* Footer */
     .footer {
@@ -1310,7 +1347,7 @@
         <a href="#" target="_blank" rel="noopener">https://www.linkedin.com/company/113022948</a>
         <p class="trust-note">Free 30-minute technical consultation available</p>
       </div>
-      <form class="contact-form" action="#" method="post">
+      <form class="contact-form" action="https://formspree.io/f/mbdwaqnp" method="POST">
         <input type="text" name="name" placeholder="Name *" required />
         <input type="email" name="email" placeholder="Company Email ID *" required />
         <input type="tel" name="phone" placeholder="Mobile No. *" />
@@ -1326,6 +1363,7 @@
           <option value="azuresql">Azure SQL</option>
         </select>
         <textarea name="message" placeholder="Message *" required></textarea>
+        <div id="formMessage" class="form-message" aria-live="polite"></div>
         <button type="submit" class="btn">Get in Touch</button>
       </form>
     </div>
@@ -1431,11 +1469,54 @@
       observer.observe(el);
     });
 
-    // Contact form
-    document.querySelector('.contact-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Form submitted! (Connect to Formspree/Netlify Forms for real submission)');
-    });
+    const contactForm = document.querySelector('.contact-form');
+    const formMessage = document.getElementById('formMessage');
+
+    if (contactForm && formMessage) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        formMessage.classList.remove('hidden');
+        formMessage.textContent = 'Sending your message...';
+        formMessage.className = 'form-message sending';
+
+        fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function(response) {
+          if (response.ok) {
+            formMessage.textContent = 'Thank you! Your message has been sent.';
+            formMessage.className = 'form-message success';
+            contactForm.reset();
+            setTimeout(function() {
+              formMessage.classList.add('hidden');
+            }, 6000);
+          } else {
+            response.json().then(function(data) {
+              formMessage.textContent = data.error || 'Submission failed. Please try again.';
+              formMessage.className = 'form-message error';
+              setTimeout(function() {
+                formMessage.classList.add('hidden');
+              }, 6000);
+            }).catch(function() {
+              formMessage.textContent = 'Submission failed. Please try again.';
+              formMessage.className = 'form-message error';
+              setTimeout(function() {
+                formMessage.classList.add('hidden');
+              }, 6000);
+            });
+          }
+        })
+        .catch(function() {
+          formMessage.textContent = 'Network error. Please check your connection and try again.';
+          formMessage.className = 'form-message error';
+          setTimeout(function() {
+            formMessage.classList.add('hidden');
+          }, 6000);
+        });
+      });
+    }
   </script>
 </body>
 </html>
