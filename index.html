@@ -37,7 +37,8 @@
         "Database Performance Tuning",
         "ETL Architecture",
         "Cloud Database Migration",
-        "Managed DBA Services"
+        "Managed DBA Services",
+        "Database and Cloud Training"
       ]
     }
   </script>
@@ -165,9 +166,9 @@
     }
     .nav a {
       color: var(--text);
-      font-size: 0.86rem;
+      font-size: 0.82rem;
       font-weight: 500;
-      padding: 0.5rem 0.52rem;
+      padding: 0.5rem 0.42rem;
       border-radius: 8px;
       transition: color 0.2s ease, background 0.2s ease;
       display: inline-flex;
@@ -216,6 +217,7 @@
       transition: background 0.2s ease;
     }
     .btn-chevron:hover { background: #0f766e; color: #fff; }
+    .header-cta .btn-chevron { display: none; }
 
     /* Mobile menu */
     .menu-toggle {
@@ -567,12 +569,19 @@
       border-color: rgba(13, 148, 136, 0.35);
       box-shadow: var(--shadow-hover);
     }
+    .team-card.trainer-card {
+      border-color: rgba(37, 99, 235, 0.18);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    }
     .team-photo {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
       background: var(--bg-section);
+    }
+    .team-photo.trainer-photo {
+      object-position: center top;
     }
     .team-content {
       padding: 1.25rem;
@@ -593,6 +602,21 @@
       color: var(--text-muted);
       font-size: 0.92rem;
       line-height: 1.6;
+    }
+    .team-specialties {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+    .team-specialties span {
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      color: #1d4ed8;
+      font-size: 0.76rem;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     /* Stats */
@@ -717,6 +741,99 @@
     .service-link { font-size: 0.9rem; font-weight: 600; color: #1e293b; transition: color 0.2s; }
     .service-link:hover { color: var(--accent); }
 
+    /* Training */
+    .training { background: var(--bg); }
+    .training-inner { max-width: var(--container); margin: 0 auto; }
+    .training-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .training-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .training-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
+    }
+    .training-card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    .training-card p {
+      margin: 0 0 1rem;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+    .training-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .training-badges span {
+      padding: 0.38rem 0.65rem;
+      background: rgba(13, 148, 136, 0.08);
+      color: #0f766e;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .training-mentor {
+      display: grid;
+      grid-template-columns: minmax(180px, 240px) 1fr;
+      gap: 1.5rem;
+      align-items: center;
+      margin-top: 2rem;
+      padding: 1.25rem;
+      background: #ffffff;
+      border: 1px solid rgba(37, 99, 235, 0.16);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .training-mentor img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 10px;
+      background: var(--bg-section);
+    }
+    .training-mentor-content h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+    .training-mentor-role {
+      margin: 0 0 0.7rem;
+      color: #1d4ed8;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+    .training-mentor-content p {
+      margin: 0 0 1rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+    .training-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.25rem;
+      background: rgba(99, 102, 241, 0.06);
+      border: 1px solid rgba(99, 102, 241, 0.12);
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
     /* Tech Stack */
     .tech { background: var(--bg); }
     .tech-badges {
@@ -827,6 +944,17 @@
       color: var(--text-muted);
       margin-bottom: 0.5rem;
     }
+    .contact-info a.contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      color: var(--accent);
+    }
     .contact-info a:hover { color: var(--accent); }
     .contact-form {
       display: flex;
@@ -842,6 +970,9 @@
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--text);
+    }
+    .form-field.hidden {
+      display: none;
     }
     .contact-form input, .contact-form textarea, .contact-form select {
       width: 100%;
@@ -988,6 +1119,8 @@
       .nav-overlay { display: block; pointer-events: none; }
       .nav-overlay.open { pointer-events: auto; }
       .contact-grid { grid-template-columns: 1fr; }
+      .training-mentor { grid-template-columns: 1fr; }
+      .training-mentor img { max-width: 320px; }
       section { padding: 60px 20px; }
     }
     @media (max-width: 600px) {
@@ -997,6 +1130,9 @@
       .projects-grid { grid-template-columns: 1fr; }
       .tools-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
+      .team-inner, .training-inner { max-width: 100%; }
+      .team-grid { grid-template-columns: 1fr; }
+      .training-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1005,9 +1141,8 @@
   <nav class="nav-mobile" id="navMobile" aria-hidden="true">
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#training">Training</a>
         <a href="#skills">Technologies</a>
-        <a href="#clients">Clients</a>
-        <a href="#team">Team</a>
         <a href="#projects">Case Studies</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
@@ -1024,13 +1159,11 @@
           </div>
         </a>
         <nav class="nav">
-          <a href="#services">Services <span class="chevron">▼</span></a>
-          <a href="#skills">Technologies <span class="chevron">▼</span></a>
           <a href="#about">About Us</a>
-          <a href="#clients">Clients</a>
-          <a href="#team">Team</a>
-          <a href="#projects">Success Stories</a>
-          <a href="#contact">Contact Us</a>
+          <a href="#services">Services <span class="chevron">▼</span></a>
+          <a href="#training">Training</a>
+          <a href="#skills">Tech <span class="chevron">▼</span></a>
+          <a href="#projects">Stories</a>
         </nav>
         <div class="header-cta">
           <a href="#contact" class="btn-nav">Get in Touch</a>
@@ -1047,7 +1180,7 @@
     <div class="hero-inner">
       <div class="hero-content">
         <h1>
-          <span class="line1">Optimize, Secure, &</span>
+          <span class="line1">Optimize, Secure,Enrich &</span>
           <span class="line2">Empower Your</span>
           <span class="line3">Database</span>
         </h1>
@@ -1282,6 +1415,20 @@
             <p>Handles database monitoring, backups, maintenance, security checks, and operational support.</p>
           </div>
         </article>
+        <article class="team-card trainer-card">
+          <img class="team-photo trainer-photo" src="assets/team/database-cloud-trainer.jpg" alt="Database and cloud trainer" />
+          <div class="team-content">
+            <h3>Database &amp; Cloud Trainer</h3>
+            <p class="team-role">Tutor for Database, GCP &amp; Cloud Technologies</p>
+            <p>Trains learners and professionals in practical database concepts, Google Cloud, cloud migration, and real project scenarios for internal and external batches.</p>
+            <div class="team-specialties" aria-label="Training specialties">
+              <span>Database</span>
+              <span>GCP</span>
+              <span>Cloud</span>
+              <span>Corporate Training</span>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1390,6 +1537,68 @@
         <p>Proactive support including hotfixes, troubleshooting, performance tuning, and critical patching with defined SLA response times.</p>
         <a href="#contact" class="service-link">Support →</a>
       </div>
+    </div>
+  </section>
+
+  <section id="training" class="training animate-on-scroll section-separator">
+    <div class="training-inner">
+      <p class="section-label">Training Classes</p>
+      <h2 class="section-title">Database & Cloud Training for Freshers and Professionals</h2>
+      <p class="section-desc">Nilan DataBytes provides practical, project-focused training for students, freshers, and working professionals who want to build real database, ETL, and cloud data engineering skills.</p>
+      <div class="training-mentor">
+        <img src="assets/team/database-cloud-trainer.jpg" alt="Database and cloud trainer leading practical classes" />
+        <div class="training-mentor-content">
+          <h3>Training led by a database and cloud tutor</h3>
+          <p class="training-mentor-role">Database, GCP and cloud technology trainer</p>
+          <p>Our trainer supports Nilan DataBytes classes and also conducts external training for learners, job seekers, working professionals, and teams that need hands-on database and cloud skills.</p>
+          <div class="training-badges">
+            <span>GCP</span>
+            <span>Cloud Platforms</span>
+            <span>Database Concepts</span>
+            <span>Migration Scenarios</span>
+            <span>Interview Guidance</span>
+          </div>
+        </div>
+      </div>
+      <div class="training-grid">
+        <div class="training-card">
+          <h3>Database Foundations</h3>
+          <p>Hands-on classes for learners starting or strengthening their database career path.</p>
+          <div class="training-badges">
+            <span>SQL Server</span>
+            <span>PostgreSQL</span>
+            <span>MySQL</span>
+            <span>Query Writing</span>
+            <span>Stored Procedures</span>
+          </div>
+          <a href="#contact" class="service-link">Ask about database training →</a>
+        </div>
+        <div class="training-card">
+          <h3>ETL & Data Integration</h3>
+          <p>Learn how production data pipelines are designed, validated, monitored, and maintained.</p>
+          <div class="training-badges">
+            <span>SSIS</span>
+            <span>Azure Data Factory</span>
+            <span>ETL Design</span>
+            <span>Data Warehousing</span>
+            <span>Reporting</span>
+          </div>
+          <a href="#contact" class="service-link">Ask about ETL training →</a>
+        </div>
+        <div class="training-card">
+          <h3>Cloud Data Engineering</h3>
+          <p>Build cloud-ready skills for modern data platforms, migrations, and analytics workloads.</p>
+          <div class="training-badges">
+            <span>Azure Databricks</span>
+            <span>Google Cloud</span>
+            <span>Azure SQL</span>
+            <span>Cloud Migration</span>
+            <span>Performance Tuning</span>
+          </div>
+          <a href="#contact" class="service-link">Ask about cloud training →</a>
+        </div>
+      </div>
+      <p class="training-note">Training can be customized for freshers, job seekers, working professionals, and corporate teams, with practical exercises, interview-focused guidance, and real-world database scenarios.</p>
     </div>
   </section>
 
@@ -1536,10 +1745,30 @@
       <div class="contact-info">
         <h3>Nilan DataBytes</h3>
         <p class="role">Database Admin & Engineering Support</p>
-        <a href="tel:+919715149369">+91-9715149369</a>
-        <a href="https://wa.me/919715149369" target="_blank" rel="noopener">Chat on WhatsApp for project inquiries</a>
-        <a href="mailto:contact@nilandatabytes.com">contact@nilandatabytes.com</a>
-        <a href="https://www.linkedin.com/company/113022948" target="_blank" rel="noopener">https://www.linkedin.com/company/113022948</a>
+        <a class="contact-link" href="tel:+919715149369">
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/>
+          </svg>
+          <span>+91-9715149369</span>
+        </a>
+        <a class="contact-link" href="https://wa.me/919715149369" target="_blank" rel="noopener">
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M12 2a9.8 9.8 0 0 0-8.5 14.7L2.4 22l5.4-1.4A9.9 9.9 0 1 0 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.2.8.9-3.1-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.6.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/>
+          </svg>
+          <span>Chat on WhatsApp for project inquiries</span>
+        </a>
+        <a class="contact-link" href="mailto:contact@nilandatabytes.com">
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2zm8 7.4L4 7.6V17h16V7.6l-8 4.8zm0-2.3L19.5 7h-15L12 10.1z"/>
+          </svg>
+          <span>contact@nilandatabytes.com</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/company/113022948" target="_blank" rel="noopener">
+          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M5 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5zM3 10h4v11H3V10zm6 0h3.8v1.5h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V21H9V10z"/>
+          </svg>
+          <span>Connect with us on LinkedIn</span>
+        </a>
         <p class="trust-note">Free 30-minute technical consultation available</p>
       </div>
       <form class="contact-form" action="https://formspree.io/f/mbdwaqnp" method="POST">
@@ -1567,7 +1796,13 @@
             <option value="mysql">MySQL</option>
             <option value="mongodb">MongoDB</option>
             <option value="azuresql">Azure SQL</option>
+            <option value="training">Training / Classes</option>
+            <option value="other">Other</option>
           </select>
+        </div>
+        <div class="form-field hidden" id="other-database-field">
+          <label for="contact-database-other">Please specify *</label>
+          <input id="contact-database-other" type="text" name="database_other" placeholder="Type your database, tool, or requirement" />
         </div>
         <div class="form-field">
           <label for="contact-message">Message *</label>
@@ -1575,7 +1810,7 @@
         </div>
         <div id="formMessage" class="form-message" aria-live="polite"></div>
         <p class="privacy-note">We only use your details to respond to your inquiry.</p>
-        <button type="submit" class="btn">Schedule a DB Audit</button>
+        <button type="submit" class="btn">Schedule & Enquiry</button>
       </form>
     </div>
   </section>
@@ -1589,6 +1824,7 @@
           <a href="#services">Migration Support</a>
           <a href="#services">Performance Audit</a>
           <a href="#services">Remote DBA</a>
+          <a href="#training">Training Classes</a>
         </div>
         <div class="footer-col">
           <h4>Company</h4>
@@ -1684,8 +1920,25 @@
 
     const contactForm = document.querySelector('.contact-form');
     const formMessage = document.getElementById('formMessage');
+    const databaseSelect = document.getElementById('contact-database');
+    const otherDatabaseField = document.getElementById('other-database-field');
+    const otherDatabaseInput = document.getElementById('contact-database-other');
 
     if (contactForm && formMessage) {
+      function toggleOtherDatabaseField() {
+        const showOther = databaseSelect && databaseSelect.value === 'other';
+        if (!otherDatabaseField || !otherDatabaseInput) return;
+
+        otherDatabaseField.classList.toggle('hidden', !showOther);
+        otherDatabaseInput.required = showOther;
+        if (!showOther) otherDatabaseInput.value = '';
+      }
+
+      if (databaseSelect) {
+        databaseSelect.addEventListener('change', toggleOtherDatabaseField);
+        toggleOtherDatabaseField();
+      }
+
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         formMessage.classList.remove('hidden');
@@ -1702,6 +1955,7 @@
             formMessage.textContent = 'Thank you! Your message has been sent.';
             formMessage.className = 'form-message success';
             contactForm.reset();
+            toggleOtherDatabaseField();
             setTimeout(function() {
               formMessage.classList.add('hidden');
             }, 6000);
