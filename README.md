@@ -7,7 +7,7 @@ Static marketing website for **Nilan DataBytes**, offering database administrati
 ## Overview
 
 - **Live site:** [https://nilandatabytes.com](https://nilandatabytes.com)
-- **Type:** Single-page static site (HTML, CSS, JavaScript)
+- **Type:** Multi-page static site (HTML, CSS, JavaScript)
 - **No build step** — open `index.html` in a browser or serve the folder with any static server.
 
 ---
@@ -27,12 +27,21 @@ Static marketing website for **Nilan DataBytes**, offering database administrati
 
 ```
 nilandatabytes-site/
-├── index.html    # Single file: all HTML, CSS, and JS
-├── README.md     # This file
-└── assets/       # Optional: images, etc. (if added later)
+├── index.html          # Homepage
+├── services.html       # Services
+├── training.html       # Training
+├── about.html          # Company and team
+├── case-studies.html   # Selected work
+├── 404.html            # Not-found page
+├── site.css            # Shared presentation
+├── site.js             # Shared interactions
+├── netlify.toml        # Hosting routes and security headers
+├── sitemap.xml
+├── robots.txt
+└── assets/             # Brand, team, client and technology assets
 ```
 
-All content, styles, and behavior are in **one file** (`index.html`) for easy editing and deployment.
+The pages share `site.css` and `site.js`. Netlify publishes the repository root and returns `404.html` for unknown routes rather than rewriting them to the homepage.
 
 ---
 
@@ -119,10 +128,10 @@ Pushes to the default branch will trigger new deployments.
 
 ## Customization
 
-- **Content:** Edit text and links directly in `index.html`.
-- **Contact form:** Replace the form `action` or hook it to a service (e.g. Formspree, Netlify Forms) or your backend.
-- **Colors:** Change CSS variables at the top of the `<style>` block (e.g. `--accent`, `--text`).
-- **Logo:** Replace the inline SVG in the header or point the logo to an image file.
+- **Content:** Edit the relevant HTML page directly.
+- **Contact form:** Submissions are handled by the configured Formspree endpoint in `index.html`.
+- **Colors:** Change the CSS variables at the top of `site.css`.
+- **Logo:** Replace `logo.svg` while preserving its filename, or update the shared header references.
 
 ---
 

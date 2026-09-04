@@ -1,1989 +1,964 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nilan DataBytes — Database Admin, Development & Migration Services</title>
-  <meta name="description" content="Database administration, development, migration, and engineering support. SQL, NoSQL, ETL, cloud." />
-  <link rel="canonical" href="https://nilandatabytes.com/" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0d9488" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://nilandatabytes.com/" />
-  <meta property="og:title" content="Nilan DataBytes — Database Admin, Development & Migration Services" />
-  <meta property="og:description" content="Database administration, ETL engineering, cloud migration, and managed database support for mission-critical systems." />
-  <meta property="og:image" content="https://nilandatabytes.com/logo.svg" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Nilan DataBytes — Database Admin, Development & Migration Services" />
-  <meta name="twitter:description" content="Database administration, ETL engineering, cloud migration, and managed database support for mission-critical systems." />
-  <meta name="twitter:image" content="https://nilandatabytes.com/logo.svg" />
-  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Nilan DataBytes",
-      "url": "https://nilandatabytes.com/",
-      "logo": "https://nilandatabytes.com/logo.svg",
-      "description": "Database administration, ETL engineering, cloud migration, and managed database support for mission-critical systems.",
-      "telephone": "+91-9715149369",
-      "email": "contact@nilandatabytes.com",
-      "areaServed": "Worldwide",
-      "sameAs": [
-        "https://www.linkedin.com/company/113022948"
-      ],
-      "serviceType": [
-        "Database Administration",
-        "Database Performance Tuning",
-        "ETL Architecture",
-        "Cloud Database Migration",
-        "Managed DBA Services",
-        "Database and Cloud Training"
-      ]
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --bg-section: #f8fafc;
-      --bg-card: #ffffff;
-      --accent: #6366f1;
-      --accent-hover: #4f46e5;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --radius: 16px;
-      --font: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --container: min(1200px, 100% - 48px);
-      --shadow: 0 1px 3px rgba(0,0,0,0.06);
-      --shadow-hover: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .animate-fade-up { animation: fadeInUp 0.6s ease-out forwards; }
-    .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
-    .animate-scale { animation: scaleIn 0.5s ease-out forwards; }
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
-    .animate-delay-1 { animation-delay: 0.1s; }
-    .animate-delay-2 { animation-delay: 0.2s; }
-    .animate-delay-3 { animation-delay: 0.3s; }
-    .animate-delay-4 { animation-delay: 0.4s; }
-    .animate-delay-5 { animation-delay: 0.5s; }
-    a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-    a:hover { color: var(--accent-hover); }
-    img { max-width: 100%; height: auto; }
-
-    /* Header - Floating MyDBOps style */
-    .header-wrap {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 16px 24px;
-    }
-    .header {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0.75rem 1rem;
-      background: rgba(255, 255, 255, 0.65);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      backdrop-filter: blur(20px) saturate(180%);
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: box-shadow 0.3s ease, background 0.3s ease;
-    }
-    .header.scrolled {
-      background: rgba(255, 255, 255, 0.75);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex: 1;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-    .header-inner .nav { flex: 1 1 auto; justify-content: center; margin-left: 0; min-width: 0; }
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      color: var(--text);
-      flex: 0 0 auto;
-    }
-    .logo-wrap:hover { color: var(--text); }
-    .logo-block { display: flex; flex-direction: column; white-space: nowrap; }
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      display: block;
-      object-fit: contain;
-    }
-    .logo { font-weight: 700; font-size: 1.2rem; letter-spacing: 0.02em; color: inherit; line-height: 1.2; }
-    .logo-tagline { font-size: 0.7rem; color: var(--text-muted); font-weight: 500; margin-top: 0.1rem; }
-    .nav {
-      display: flex;
-      gap: 0.25rem;
-      align-items: center;
-      margin-left: 2rem;
-      flex-wrap: nowrap;
-    }
-    .nav a {
-      color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 500;
-      padding: 0.5rem 0.42rem;
-      border-radius: 8px;
-      transition: color 0.2s ease, background 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      white-space: nowrap;
-    }
-    .nav a:hover { color: #0d9488; background: rgba(13, 148, 136, 0.06); }
-    .nav a.active { color: #0d9488; background: rgba(13, 148, 136, 0.08); }
-    .nav a .chevron { font-size: 0.7rem; opacity: 0.7; }
-    .header-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex: 0 0 auto;
-    }
-    .btn-nav {
-      padding: 0.6rem 1rem;
-      background: #0d9488;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      transition: background 0.2s ease;
-    }
-    .btn-nav:hover { background: #0f766e; color: #fff; }
-    .btn-chevron {
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      background: #0d9488;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      transition: background 0.2s ease;
-    }
-    .btn-chevron:hover { background: #0f766e; color: #fff; }
-    .header-cta .btn-chevron { display: none; }
-
-    /* Mobile menu */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      padding: 8px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 110;
-    }
-    .menu-toggle span {
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; }
-    .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.6rem 1.25rem;
-      background: linear-gradient(90deg, #818cf8 0%, var(--accent) 50%, var(--accent-hover) 100%);
-      color: #fff;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .btn:hover {
-      opacity: 0.95;
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: all 0.3s ease;
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(99, 102, 241, 0.06);
-      transform: translateY(-2px);
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 24px 80px;
-      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #f0f9ff 50%, #ffffff 100%);
-    }
-    .hero-inner {
-      max-width: var(--container);
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    .hero-content { max-width: 560px; }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.9rem;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.1s forwards;
-    }
-    .hero-badge svg { width: 18px; height: 18px; flex-shrink: 0; }
-    .hero h1 {
-      font-size: clamp(2.5rem, 4.5vw, 3.25rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin: 0 0 1rem;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.2s forwards;
-    }
-    .hero h1 .line1 { color: #3b82f6; display: block; }
-    .hero h1 .line2 { color: #1e40af; display: block; }
-    .hero h1 .line3 { color: #1e3a8a; display: block; }
-    .hero-subtitle {
-      margin: 0 0 1rem;
-      color: #0f766e;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.25s forwards;
-    }
-    .hero-desc {
-      color: #334155;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 520px;
-      margin-bottom: 1.75rem;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.35s forwards;
-    }
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.45s forwards;
-    }
-    .hero-btns .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.35rem;
-      background: #3b82f6;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-    .hero-btns .btn-primary:hover {
-      background: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
-    }
-    .hero-btns .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.7rem 1.35rem;
-      background: #fff;
-      color: #475569;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-    }
-    .hero-btns .btn-secondary:hover {
-      border-color: #3b82f6;
-      color: #3b82f6;
-      background: rgba(59, 130, 246, 0.04);
-    }
-    .hero-btns a { text-decoration: none; }
-    .hero-pill-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.4s forwards;
-    }
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.4rem 0.8rem;
-      background: rgba(255,255,255,0.9);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-    .hero-stat {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.55s forwards;
-    }
-    .hero-stat strong { color: #3b82f6; font-size: 1.25rem; }
-    .hero-stat span { color: #64748b; font-size: 0.95rem; }
-
-    /* Hero illustration */
-    .hero-illus {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 420px;
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out 0.3s forwards;
-      overflow: visible;
-    }
-    .hero-iso-illus {
-      width: 100%;
-      max-width: 440px;
-      height: auto;
-      filter: drop-shadow(0 8px 32px rgba(13,148,136,0.10));
-    }
-    @keyframes floatA { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    @keyframes floatB { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-    @keyframes floatC { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    @keyframes floatD { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-    @keyframes floatE { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-    .iso-center  { animation: floatA 4s ease-in-out infinite; }
-    .iso-card-tl { animation: floatB 4.5s ease-in-out infinite 0.3s; }
-    .iso-card-tr { animation: floatC 3.8s ease-in-out infinite 0.8s; }
-    .iso-card-bl { animation: floatD 4.2s ease-in-out infinite 1.1s; }
-    .iso-card-br { animation: floatE 4.6s ease-in-out infinite 0.5s; }
-    .hero-float {
-      position: absolute;
-      animation: float 4s ease-in-out infinite;
-    }
-    .hero-illus .hero-float-1 { top: 5%; right: 5%; animation-delay: 0.5s; }
-    .hero-illus .hero-float-2 { bottom: 45%; left: -5%; animation-delay: 1s; }
-    .hero-illus .hero-float-3 { bottom: 10%; right: 0%; animation-delay: 1.5s; }
-
-    /* Sections */
-    section {
-      padding: 100px 24px;
-      max-width: var(--container);
-      margin: 0 auto;
-      width: 100%;
-    }
-    .section-separator {
-      border-top: 1px solid var(--border);
-      padding-top: 80px;
-    }
-    .section-label { color: var(--accent); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .section-title { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 700; margin: 0 0 1rem; }
-    .section-desc { color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
-    .form-explanation { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
-    .trust-note { margin-top: 1rem; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
-
-    /* Trusted */
-    .trusted { background: var(--bg-section); }
-    .trusted-inner { max-width: var(--container); margin: 0 auto; }
-    .trust-badges {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .trust-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 1rem 1.15rem;
-      background: #ffffff;
-      border: 1px solid rgba(15, 118, 110, 0.12);
-      border-radius: 18px;
-      box-shadow: 0 10px 24px rgba(13, 148, 136, 0.06);
-      color: #0f172a;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .trust-badge::before {
-      content: '•';
-      margin-right: 0.65rem;
-      color: #0d9488;
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-    .testimonial-card {
-      margin-top: 1.75rem;
-      padding: 1.5rem;
-      background: #ffffff;
-      border: 1px solid rgba(13, 148, 136, 0.12);
-      border-radius: 24px;
-      box-shadow: 0 12px 32px rgba(13, 148, 136, 0.08);
-      max-width: 760px;
-    }
-    .testimonial-card p {
-      margin: 0 0 0.75rem;
-      color: #0f172a;
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-    .testimonial-card span {
-      color: #475569;
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
-    .client-list {
-      margin-top: 2rem;
-    }
-    .client-list h3 {
-      margin: 0 0 1rem;
-      font-size: 1rem;
-      color: #0f172a;
-      font-weight: 700;
-    }
-    .client-logo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-    .client-logo-card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 104px;
-      padding: 1.25rem;
-      background: #ffffff;
-      border: 1px solid rgba(15, 118, 110, 0.12);
-      border-radius: 16px;
-      box-shadow: 0 10px 24px rgba(13, 148, 136, 0.06);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .client-logo-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(13, 148, 136, 0.35);
-      box-shadow: 0 14px 32px rgba(13, 148, 136, 0.1);
-    }
-    .client-logo-card img {
-      display: block;
-      width: 100%;
-      max-width: 180px;
-      max-height: 58px;
-      object-fit: contain;
-    }
-
-    /* Team */
-    .team { background: var(--bg); }
-    .team-inner { max-width: var(--container); margin: 0 auto; }
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-    .team-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .team-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(13, 148, 136, 0.35);
-      box-shadow: var(--shadow-hover);
-    }
-    .team-card.trainer-card {
-      border-color: rgba(37, 99, 235, 0.18);
-      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    }
-    .team-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      background: var(--bg-section);
-    }
-    .team-photo.trainer-photo {
-      object-position: center top;
-    }
-    .team-content {
-      padding: 1.25rem;
-    }
-    .team-content h3 {
-      margin: 0 0 0.25rem;
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-    .team-role {
-      margin: 0 0 0.75rem;
-      color: #0d9488;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-    .team-content p:last-child {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.6;
-    }
-    .team-specialties {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 1rem;
-    }
-    .team-specialties span {
-      padding: 0.35rem 0.55rem;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.08);
-      color: #1d4ed8;
-      font-size: 0.76rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    /* Stats */
-    .stats {
-      background: var(--bg);
-      padding: 60px 24px;
-    }
-    .stats-grid {
-      max-width: var(--container);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.5rem;
-    }
-    .stat-card {
-      text-align: center;
-      padding: 1.5rem;
-      background: var(--bg-section);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-    }
-    .stat-card strong { display: block; font-size: 1.75rem; color: var(--accent); margin-bottom: 0.25rem; }
-    .stat-card span { font-size: 0.9rem; color: var(--text-muted); }
-
-    .results { background: var(--bg-section); }
-    .results-inner { max-width: var(--container); margin: 0 auto; }
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .result-card {
-      padding: 1.5rem;
-      background: #ffffff;
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-      text-align: center;
-    }
-    .result-card strong {
-      display: block;
-      font-size: 2rem;
-      color: #2563eb;
-      margin-bottom: 0.5rem;
-    }
-    .result-card span {
-      color: #475569;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* About */
-    .about {
-      background: var(--bg-section);
-      padding: 80px 24px;
-    }
-    .about-inner { max-width: var(--container); margin: 0 auto; }
-    .about p { color: var(--text-muted); margin-bottom: 1rem; }
-
-    /* How We Work */
-    .how-we-work { background: var(--bg); }
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
-    .tool-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .tool-card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-4px);
-    }
-    .tool-card h3 { font-size: 1.2rem; margin: 0 0 0.5rem; }
-    .tool-card .sub { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; }
-    .tool-card ul { margin: 0; padding-left: 1.25rem; color: var(--text-muted); }
-    .tool-card li { margin-bottom: 0.5rem; }
-    .tool-note {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      background: rgba(99, 102, 241, 0.06);
-      border: 1px solid rgba(99, 102, 241, 0.2);
-      border-radius: 10px;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* Services */
-    .services { background: var(--bg-section); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .service-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-    }
-    .service-card h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
-    .service-card p { color: var(--text-muted); margin: 0 0 1rem; font-size: 0.95rem; }
-    .service-card .benefit { color: var(--accent); font-weight: 600; margin: 0 0 0.5rem; font-size: 0.9rem; }
-    .service-link { font-size: 0.9rem; font-weight: 600; color: #1e293b; transition: color 0.2s; }
-    .service-link:hover { color: var(--accent); }
-
-    /* Training */
-    .training { background: var(--bg); }
-    .training-inner { max-width: var(--container); margin: 0 auto; }
-    .training-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
-    .training-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .training-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: var(--shadow-hover);
-    }
-    .training-card h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-    .training-card p {
-      margin: 0 0 1rem;
-      color: var(--text-muted);
-      font-size: 0.94rem;
-    }
-    .training-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .training-badges span {
-      padding: 0.38rem 0.65rem;
-      background: rgba(13, 148, 136, 0.08);
-      color: #0f766e;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-    .training-mentor {
-      display: grid;
-      grid-template-columns: minmax(180px, 240px) 1fr;
-      gap: 1.5rem;
-      align-items: center;
-      margin-top: 2rem;
-      padding: 1.25rem;
-      background: #ffffff;
-      border: 1px solid rgba(37, 99, 235, 0.16);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .training-mentor img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 10px;
-      background: var(--bg-section);
-    }
-    .training-mentor-content h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.2rem;
-      color: var(--text);
-    }
-    .training-mentor-role {
-      margin: 0 0 0.7rem;
-      color: #1d4ed8;
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-    .training-mentor-content p {
-      margin: 0 0 1rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      font-size: 0.95rem;
-    }
-    .training-note {
-      margin-top: 1.5rem;
-      padding: 1rem 1.25rem;
-      background: rgba(99, 102, 241, 0.06);
-      border: 1px solid rgba(99, 102, 241, 0.12);
-      border-radius: 12px;
-      color: var(--text-muted);
-      font-size: 0.94rem;
-    }
-
-    /* Tech Stack */
-    .tech { background: var(--bg); }
-    .tech-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-    .tech-badges span {
-      padding: 0.5rem 1rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-    .tech-badges span:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* Why Choose Us */
-    .why-choose { background: var(--bg-section); }
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .why-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-    }
-    .why-card:hover { border-color: var(--accent); box-shadow: var(--shadow-hover); }
-    .why-card h4 { font-size: 1rem; margin: 0 0 0.5rem; color: var(--text); }
-    .why-card p { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
-
-    /* FAQ */
-    .faq { background: var(--bg-section); }
-    .faq-list { margin-top: 2rem; }
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .faq-item h4 { font-size: 1rem; margin: 0 0 0.5rem; }
-    .faq-item p { margin: 0; font-size: 0.95rem; color: var(--text-muted); }
-
-    /* Projects */
-    .projects { background: var(--bg-section); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .project-card a { color: inherit; display: block; }
-    .project-thumb {
-      height: 180px;
-      background: linear-gradient(135deg, var(--accent) 20%, var(--accent-hover) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      color: #fff;
-      transition: transform 0.4s ease;
-    }
-    .project-card:hover .project-thumb { transform: scale(1.05); }
-    .project-content { padding: 1.5rem; }
-    .project-tag { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-bottom: 0.5rem; }
-    .project-card h3 { font-size: 1.15rem; margin: 0 0 0.5rem; }
-    .project-card p { color: var(--text-muted); margin: 0 0 1rem; font-size: 0.95rem; }
-    .project-stack { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
-    .project-link { font-size: 0.9rem; color: var(--accent); font-weight: 600; }
-    .project-link:hover { color: var(--accent-hover); }
-
-    /* Contact */
-    .contact { background: var(--bg); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-      margin-top: 2rem;
-    }
-    .contact-info h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
-    .contact-info .role { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; }
-    .contact-info a, .contact-info p {
-      display: block;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-    }
-    .contact-info a.contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .contact-icon {
-      width: 20px;
-      height: 20px;
-      flex: 0 0 20px;
-      color: var(--accent);
-    }
-    .contact-info a:hover { color: var(--accent); }
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .form-field label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .form-field.hidden {
-      display: none;
-    }
-    .contact-form input, .contact-form textarea, .contact-form select {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      background: var(--bg-section);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 1rem;
-    }
-    .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text-muted); }
-    .contact-form input, .contact-form textarea, .contact-form select { transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
-    }
-    .contact-form textarea { min-height: 120px; resize: vertical; }
-    .contact-form button { align-self: flex-start; cursor: pointer; }
-    .privacy-note {
-      margin: -0.25rem 0 0;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-    }
-    .form-message {
-      display: block;
-      width: 100%;
-      padding: 1rem 1rem;
-      border-radius: 12px;
-      font-size: 0.95rem;
-      min-height: 2.2rem;
-      line-height: 1.4;
-      background: rgba(15, 23, 42, 0.05);
-      border: 1px solid transparent;
-      color: var(--text);
-      transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-      opacity: 0.95;
-    }
-    .form-message.success {
-      background: #ecfdf5;
-      border-color: #34d399;
-      color: #065f46;
-    }
-    .form-message.error {
-      background: #fee2e2;
-      border-color: #fca5a5;
-      color: #991b1b;
-    }
-    .form-message.sending {
-      background: #e2e8f0;
-      border-color: #cbd5e1;
-      color: #0f172a;
-    }
-    .form-message.hidden {
-      opacity: 0;
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      overflow: hidden;
-      transition: opacity 0.2s ease, max-height 0.2s ease, padding 0.2s ease;
-    }
-
-    /* Footer */
-    .footer {
-      padding: 2rem 24px;
-      background: var(--bg-section);
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .footer-inner { max-width: var(--container); margin: 0 auto; }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .footer-col h4 { font-size: 0.9rem; margin: 0 0 0.75rem; color: var(--text); }
-    .footer-col a { display: block; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.4rem; }
-    .footer-col a:hover { color: var(--accent); }
-    .footer-bottom { text-align: center; }
-    .footer-bottom .logo-wrap { margin-bottom: 0.5rem; }
-    .footer p { color: var(--text-muted); font-size: 0.9rem; margin: 0; }
-
-    /* Mobile nav overlay */
-    .nav-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      z-index: 90;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .nav-overlay.open { opacity: 1; }
-    .nav-mobile {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: min(280px, 85vw);
-      background: var(--bg);
-      padding: 80px 24px 24px;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 95;
-      box-shadow: -8px 0 24px rgba(0, 0, 0, 0.1);
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .nav-mobile.open { transform: translateX(0); }
-    .nav-mobile a {
-      padding: 0.75rem 0;
-      font-size: 1.1rem;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      .animate-on-scroll { opacity: 1; transform: none; }
-    }
-
-    @media (max-width: 900px) {
-      .header-wrap { padding: 12px 16px; }
-      .header { padding: 0.75rem 1rem; }
-      .header-inner .nav { display: none; }
-      .header-cta { display: none; }
-      .menu-toggle { display: flex; }
-      .hero-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-      .hero-content { max-width: none; margin: 0 auto; }
-      .hero h1 { text-align: center; }
-      .hero-desc { margin-left: auto; margin-right: auto; text-align: center; }
-      .hero-btns { justify-content: center; }
-      .hero-stat { justify-content: center; }
-      .hero-illus { order: -1; max-width: 420px; margin: 0 auto; min-height: 360px; }
-      .hero-db-card { min-height: 90px; padding: 0.75rem; }
-      .hero-float { display: none; }
-      .nav-mobile { display: flex; }
-      .nav-overlay { display: block; pointer-events: none; }
-      .nav-overlay.open { pointer-events: auto; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .training-mentor { grid-template-columns: 1fr; }
-      .training-mentor img { max-width: 320px; }
-      section { padding: 60px 20px; }
-    }
-    @media (max-width: 600px) {
-      .hero { padding: 100px 20px 60px; }
-      .hero-btns { flex-direction: column; }
-      .hero-btns .btn { width: 100%; justify-content: center; min-height: 48px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .tools-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .team-inner, .training-inner { max-width: 100%; }
-      .team-grid { grid-template-columns: 1fr; }
-      .training-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body id="top">
-  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
-  <nav class="nav-mobile" id="navMobile" aria-hidden="true">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#training">Training</a>
-        <a href="#skills">Technologies</a>
-        <a href="#projects">Case Studies</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact">Contact</a>
-    <a href="#contact" class="btn" style="margin-top:1rem;">Schedule a DB Audit</a>
-  </nav>
-  <div class="header-wrap">
-    <header class="header" id="header">
-      <div class="header-inner">
-        <a href="#top" class="logo-wrap">
-          <img src="logo.svg" alt="Nilan DataBytes logo" class="logo-icon" />
-          <div class="logo-block">
-            <span class="logo">Nilan DataBytes</span>
-            <span class="logo-tagline">Database Engineering & ETL Consulting</span>
-          </div>
-        </a>
-        <nav class="nav">
-          <a href="#about">About Us</a>
-          <a href="#services">Services <span class="chevron">▼</span></a>
-          <a href="#training">Training</a>
-          <a href="#skills">Tech <span class="chevron">▼</span></a>
-          <a href="#projects">Stories</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nilan DataBytes | Database Engineering & Cloud Migration</title>
+    <meta
+      name="description"
+      content="Database engineering, ETL, performance audits, managed DBA and cloud migration for mission-critical systems."
+    />
+    <link rel="canonical" href="https://nilandatabytes.com/" />
+    <meta name="theme-color" content="#071522" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nilan DataBytes" />
+    <meta property="og:title" content="Nilan DataBytes | Database Engineering & Cloud Migration" />
+    <meta property="og:description" content="Database engineering, ETL, performance audits, managed DBA and cloud migration for mission-critical systems." />
+    <meta property="og:url" content="https://nilandatabytes.com/" />
+    <meta property="og:image" content="https://nilandatabytes.com/assets/social-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nilan DataBytes | Database Engineering & Cloud Migration" />
+    <meta name="twitter:description" content="Engineering and operating dependable database and data-platform systems." />
+    <meta name="twitter:image" content="https://nilandatabytes.com/assets/social-preview.png" />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"ProfessionalService","name":"Nilan DataBytes","url":"https://nilandatabytes.com/","logo":"https://nilandatabytes.com/logo.svg","email":"contact@nilandatabytes.com","telephone":"+91 97151 49369","description":"Database engineering, ETL, managed DBA, performance optimization, cloud migration and technical training.","areaServed":"Worldwide","sameAs":["https://www.linkedin.com/company/nilandatabytes/"]}
+    </script>
+    <link rel="icon" href="logo.svg" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body class="home">
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="index.html"
+          ><img src="logo.svg" alt="Nilan DataBytes" /><span
+            ><strong>Nilan DataBytes</strong
+            ><small>Database Engineering • Reliability • Cloud</small></span
+          ></a
+        >
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+          <a class="active" href="index.html">Home</a
+          ><a href="services.html">Services</a
+          ><a href="training.html">Training</a><a href="about.html">About</a
+          ><a href="case-studies.html">Case Studies</a>
         </nav>
-        <div class="header-cta">
-          <a href="#contact" class="btn-nav">Get in Touch</a>
-          <a href="#contact" class="btn-chevron" aria-label="Contact">→</a>
-        </div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" type="button">
-          <span></span><span></span><span></span>
+        <a class="nav-cta interactive-cta" href="#contact"
+          ><span>Discuss a Project</span
+          ><span class="cta-arrow" aria-hidden="true">↗</span></a
+        ><button class="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation">
+          ☰
         </button>
       </div>
     </header>
-  </div>
-
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <h1>
-          <span class="line1">Optimize, Secure,Enrich &</span>
-          <span class="line2">Empower Your</span>
-          <span class="line3">Database</span>
-        </h1>
-        <p class="hero-subtitle">Database consulting and engineering-led solutions for mission-critical systems.</p>
-        <p class="hero-desc">Nilan DataBytes delivers enterprise database engineering, ETL pipeline design, and cloud migration support. We optimize performance, reduce risk, and keep your data infrastructure reliable.</p>
-        <div class="hero-pill-wrap">
-          <span class="hero-pill">🧠 Database consulting</span>
-          <span class="hero-pill">⚙️ Engineering-led solutions</span>
-          <span class="hero-pill">📊 ETL pipeline reliability</span>
-          <span class="hero-pill">🛡️ 24/7 managed DB operations</span>
-        </div>
-        <div class="hero-btns">
-          <a href="#contact" class="btn-primary">Schedule a DB Audit</a>
-          <a href="#projects" class="btn-secondary">View Case Studies →</a>
-        </div>
-      </div>
-      <div class="hero-illus">
-        <svg class="hero-iso-illus" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow:visible">
-          <defs>
-            <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0d9488" flood-opacity="0.12"/>
-            </filter>
-            <filter id="center-shadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0d9488" flood-opacity="0.18"/>
-            </filter>
-            <linearGradient id="platGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#f0fdf9"/>
-              <stop offset="100%" stop-color="#ccfbf1"/>
-            </linearGradient>
-          </defs>
-
-          <!-- Background blobs -->
-          <ellipse cx="200" cy="200" rx="170" ry="160" fill="#e6fffa" opacity="0.35"/>
-          <ellipse cx="310" cy="90"  rx="60"  ry="45"  fill="#ccfbf1" opacity="0.4"/>
-          <ellipse cx="90"  cy="310" rx="55"  ry="40"  fill="#ccfbf1" opacity="0.3"/>
-
-          <!-- Dashed lines from center (200,200) to each satellite center -->
-          <line x1="200" y1="200" x2="69"  y2="65"  stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
-          <line x1="200" y1="200" x2="331" y2="65"  stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
-          <line x1="200" y1="200" x2="69"  y2="335" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
-          <line x1="200" y1="200" x2="331" y2="335" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.3"/>
-
-          <!-- ── TOP-LEFT: ETL Pipeline (outer g = position, inner g = animation) ── -->
-          <g transform="translate(10, 10)">
-            <g class="iso-card-tl">
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
-              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">ETL Pipeline</text>
-              <rect x="12" y="22" width="24" height="28" rx="5" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
-              <line x1="17" y1="31" x2="31" y2="31" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="17" y1="36" x2="29" y2="36" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="17" y1="41" x2="27" y2="41" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M38 36 L47 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <path d="M44 32 L48 36 L44 40" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="59" cy="36" r="10" fill="#e6fffa" stroke="#0d9488" stroke-width="2"/>
-              <circle cx="59" cy="36" r="4" fill="#0d9488"/>
-              <line x1="59" y1="23" x2="59" y2="26" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <line x1="59" y1="46" x2="59" y2="49" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <line x1="46" y1="36" x2="49" y2="36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <line x1="69" y1="36" x2="72" y2="36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <path d="M71 36 L80 36" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <path d="M77 32 L81 36 L77 40" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="82" y="22" width="24" height="28" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
-              <line x1="87" y1="31" x2="101" y2="31" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="87" y1="36" x2="99"  y2="36" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="87" y1="41" x2="97"  y2="41" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
-            </g>
-          </g>
-
-          <!-- ── TOP-RIGHT: Cloud ── -->
-          <g transform="translate(272, 10)">
-            <g class="iso-card-tr">
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
-              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">Cloud</text>
-              <path d="M82 52 C88 52 93 47 93 41 C93 35 88 30 82 30 C81 24 76 20 69 20 C61 20 55 26 55 34 C52 34 47 37 47 42 C47 48 52 52 59 52 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="2"/>
-              <line x1="63" y1="72" x2="63" y2="60" stroke="#0d9488" stroke-width="2" stroke-linecap="round"/>
-              <path d="M57 65 L63 59 L69 65" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <line x1="77" y1="60" x2="77" y2="72" stroke="#14b8a6" stroke-width="2" stroke-linecap="round"/>
-              <path d="M71 67 L77 73 L83 67" stroke="#14b8a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-          </g>
-
-          <!-- ── CENTER: Database (large) ── -->
-          <g transform="translate(125, 125)">
-            <g class="iso-center">
-              <rect x="-10" y="-10" width="170" height="170" rx="28" fill="white" filter="url(#center-shadow)"/>
-              <rect x="-10" y="-10" width="170" height="170" rx="28" fill="url(#platGrad)" opacity="0.5"/>
-              <text x="75" y="152" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="12" font-weight="700" fill="#0d9488">Database</text>
-              <ellipse cx="75" cy="34" rx="38" ry="11" fill="#2dd4bf" opacity="0.9"/>
-              <ellipse cx="75" cy="34" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
-              <rect x="37" y="34" width="76" height="30" fill="#ccfbf1"/>
-              <line x1="37" y1="34" x2="37" y2="64" stroke="#0d9488" stroke-width="2"/>
-              <line x1="113" y1="34" x2="113" y2="64" stroke="#0d9488" stroke-width="2"/>
-              <ellipse cx="75" cy="64" rx="38" ry="11" fill="#99f6e4"/>
-              <ellipse cx="75" cy="64" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
-              <rect x="37" y="64" width="76" height="26" fill="#e6fffa"/>
-              <line x1="37" y1="64" x2="37" y2="90" stroke="#0d9488" stroke-width="2"/>
-              <line x1="113" y1="64" x2="113" y2="90" stroke="#0d9488" stroke-width="2"/>
-              <ellipse cx="75" cy="90" rx="38" ry="11" fill="#ccfbf1"/>
-              <ellipse cx="75" cy="90" rx="38" ry="11" fill="none" stroke="#0d9488" stroke-width="2"/>
-              <circle cx="100" cy="34" r="4" fill="#0d9488"/>
-              <circle cx="100" cy="64" r="4" fill="#14b8a6"/>
-              <circle cx="100" cy="90" r="4" fill="#2dd4bf"/>
-            </g>
-          </g>
-
-          <!-- ── BOTTOM-LEFT: Reports ── -->
-          <g transform="translate(10, 280)">
-            <g class="iso-card-bl">
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
-              <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
-              <text x="59" y="100" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">Reports</text>
-              <rect x="28" y="12" width="50" height="64" rx="6" fill="#e6fffa" stroke="#0d9488" stroke-width="1.5"/>
-              <path d="M52 12 L78 28 L52 28 Z" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5" stroke-linejoin="round"/>
-              <rect x="34" y="60" width="7"  height="12" rx="2" fill="#0d9488"/>
-              <rect x="44" y="52" width="7"  height="20" rx="2" fill="#14b8a6"/>
-              <rect x="54" y="44" width="7"  height="28" rx="2" fill="#2dd4bf"/>
-              <rect x="64" y="48" width="7"  height="24" rx="2" fill="#0d9488" opacity="0.5"/>
-              <line x1="34" y1="32" x2="60" y2="32" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="34" y1="40" x2="54" y2="40" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-            </g>
-          </g>
-
-          <!-- ── BOTTOM-RIGHT: DB Admin ── -->
-          <g transform="translate(272, 280)">
-            <g class="iso-card-br">
-            <rect x="0" y="0" width="118" height="110" rx="18" fill="white" filter="url(#card-shadow)"/>
-            <rect x="0" y="0" width="118" height="110" rx="18" fill="url(#platGrad)" opacity="0.6"/>
-            <text x="59" y="96" text-anchor="middle" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="600" fill="#0d9488">DB Admin</text>
-            <!-- Server rack rows -->
-            <rect x="18" y="14" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#0d9488" stroke-width="1.5"/>
-            <circle cx="26" cy="22" r="3" fill="#0d9488"/>
-            <line x1="34" y1="19" x2="90" y2="19" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="34" y1="25" x2="80" y2="25" stroke="#0d9488" stroke-width="1.5" stroke-linecap="round"/>
-
-            <rect x="18" y="34" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#14b8a6" stroke-width="1.5"/>
-            <circle cx="26" cy="42" r="3" fill="#14b8a6"/>
-            <line x1="34" y1="39" x2="90" y2="39" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="34" y1="45" x2="76" y2="45" stroke="#14b8a6" stroke-width="1.5" stroke-linecap="round"/>
-
-            <rect x="18" y="54" width="82" height="16" rx="5" fill="#ccfbf1" stroke="#2dd4bf" stroke-width="1.5"/>
-            <circle cx="26" cy="62" r="3" fill="#2dd4bf"/>
-            <line x1="34" y1="59" x2="90" y2="59" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="34" y1="65" x2="70" y2="65" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/>
-          </g>
-          </g>
-
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <section id="trusted" class="trusted animate-on-scroll">
-    <div class="trusted-inner">
-      <p class="section-label">Trusted by Industry Leaders</p>
-      <h2 class="section-title">Your Trusted Database Partner</h2>
-      <div class="trust-badges">
-        <div class="trust-badge">SLA-backed database engineering</div>
-        <div class="trust-badge">Zero-downtime migrations</div>
-        <div class="trust-badge">ETL and analytics reliability</div>
-        <div class="trust-badge">Compliance-ready data platforms</div>
-      </div>
-      <p class="section-desc">With years of expertise, we are your trusted database management partner. We serve clients across industries, overseeing mission-critical databases and delivering enterprise-grade support for SQL Server, PostgreSQL, MySQL, and cloud platforms.</p>
-      <div id="clients" class="client-list" aria-labelledby="clients-title">
-        <h3 id="clients-title">Client List</h3>
-        <div class="client-logo-grid">
-          <a class="client-logo-card" href="https://ellow.io/" target="_blank" rel="noopener" aria-label="Visit ellow">
-            <img src="assets/client-logos/ellow.svg" alt="ellow logo" />
-          </a>
-          <a class="client-logo-card" href="https://datalogixs.com/" target="_blank" rel="noopener" aria-label="Visit Datalogixs Technologies">
-            <img src="assets/client-logos/datalogixs.svg" alt="Datalogixs Technologies logo" />
-          </a>
-          <a class="client-logo-card" href="https://www.pelsoftlabs.in/" target="_blank" rel="noopener" aria-label="Visit PelsoftLabs">
-            <img src="assets/client-logos/pelsoftlabs.svg" alt="PelsoftLabs logo" />
-          </a>
-          <a class="client-logo-card" href="https://www.dignityaspire.com/" target="_blank" rel="noopener" aria-label="Visit Dignity Aspire">
-            <img src="assets/client-logos/dignity-aspire.svg" alt="Dignity Aspire logo" />
-          </a>
-          <a class="client-logo-card" href="https://cognetagreen.com/" target="_blank" rel="noopener" aria-label="Visit Cogneta">
-            <img src="assets/client-logos/cogneta.svg" alt="Cogneta logo" />
-          </a>
-          <a class="client-logo-card" href="https://voiceracx.ai/" target="_blank" rel="noopener" aria-label="Visit VOICERACX AI">
-            <img src="assets/client-logos/voiceracx.svg" alt="VOICERACX AI logo" />
-          </a>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <p>"NilanDataBytes delivered good work on this SQL Job. His communication was very good, he met all deadlines, and he is very strong in SQL and he is the goto person for any SQL Jobs, he will absorb the pressure and make your life easy. He is very dedicated to the job in hand. I will definitely refer him for any complex db jobs. We are very happy with Jayakumar work and he was able to convince the client on few topics where we were lacking the knowledge and that was a sigh of relief for us. He is one of the best guys I have ever worked with. Thanks Jayakumar and Team on the job done, We really appreciate it, and will likely have additional jobs for them in the future.”</p>
-        <span>—Mr.Sravan , Delivery Director, Voicera Analytics</span>
-      </div>
-    </div>
-  </section>
-
-  <section id="stats" class="stats animate-on-scroll">
-    <div class="stats-grid">
-      <div class="stat-card"><strong>16+</strong><span>Years Expertise</span></div>
-      <div class="stat-card"><strong>10+</strong><span>Happy Clients</span></div>
-      <div class="stat-card"><strong>50+</strong><span>Migrations Done</span></div>
-      <div class="stat-card"><strong>24/7</strong><span>Support Available</span></div>
-      <div class="stat-card"><strong>99.9%</strong><span>Uptime Target</span></div>
-    </div>
-  </section>
-
-  <section id="team" class="team animate-on-scroll section-separator">
-    <div class="team-inner">
-      <p class="section-label">Our Team</p>
-      <h2 class="section-title">Meet the Database Experts</h2>
-      <p class="section-desc">A focused team bringing hands-on database engineering, development, and operations expertise to every engagement.</p>
-      <div class="team-grid">
-        <article class="team-card">
-          <img class="team-photo" src="assets/team/Jay.jpeg" alt="JayaKumar B, Founder and Architect" />
-          <div class="team-content">
-            <h3>JayaKumar B</h3>
-            <p class="team-role">Founder and Architect</p>
-            <p>Leads client strategy, delivery standards, and database modernization engagements.</p>
-          </div>
-        </article>
-        <article class="team-card">
-          <img class="team-photo" src="assets/team/Selva.jpeg" alt="SelvaKumar, Database Developer" />
-          <div class="team-content">
-            <h3>SelvaKumar K</h3>
-            <p class="team-role">Database Developer</p>
-            <p>Builds database objects, optimized queries, reporting workflows, and reliable data solutions.</p>
-          </div>
-        </article>
-        <article class="team-card">
-          <img class="team-photo" src="assets/team/Veni.jpeg" alt="KrishnaVeni, Database Admin" />
-          <div class="team-content">
-            <h3>KrishnaVeni D</h3>
-            <p class="team-role">Database Admin</p>
-            <p>Handles database monitoring, backups, maintenance, security checks, and operational support.</p>
-          </div>
-        </article>
-        <article class="team-card trainer-card">
-          <img class="team-photo trainer-photo" src="assets/team/database-cloud-trainer.jpg" alt="Database and cloud trainer" />
-          <div class="team-content">
-            <h3>Database &amp; Cloud Trainer</h3>
-            <p class="team-role">Tutor for Database, GCP &amp; Cloud Technologies</p>
-            <p>Trains learners and professionals in practical database concepts, Google Cloud, cloud migration, and real project scenarios for internal and external batches.</p>
-            <div class="team-specialties" aria-label="Training specialties">
-              <span>Database</span>
-              <span>GCP</span>
-              <span>Cloud</span>
-              <span>Corporate Training</span>
+    <main>
+      <section class="hero hero-tech">
+        <div class="hero-grid-lines" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="reveal hero-copy">
+            <p class="eyebrow">Database engineering · for critical systems</p>
+            <h1>
+              Database systems
+              <span class="gradient">built to perform. Built to last.</span>
+            </h1>
+            <p class="lead">
+              Architecture, SQL and ETL development, performance tuning,
+              monitoring and cloud migration for business-critical databases.
+            </p>
+            <div class="hero-platforms" aria-label="Primary technologies">
+              <div class="hero-platform" aria-label="SQL Server">
+                <i class="tech-mark ms">SQL</i><span>SQL Server</span>
+              </div>
+              <div class="hero-platform" aria-label="Oracle">
+                <i class="tech-mark oracle">O</i><span>Oracle</span>
+              </div>
+              <div class="hero-platform" aria-label="PostgreSQL">
+                <i class="tech-mark pg">PG</i><span>PostgreSQL</span>
+              </div>
+              <div class="hero-platform" aria-label="MySQL">
+                <i class="tech-mark my">my</i><span>MySQL</span>
+              </div>
+              <div class="hero-platform" aria-label="Apache Cassandra">
+                <i class="tech-mark cassandra">C</i><span>Cassandra</span>
+              </div>
+              <div class="hero-platform" aria-label="MongoDB">
+                <i class="tech-mark mongo">M</i><span>MongoDB</span>
+              </div>
+              <div class="hero-platform" aria-label="Firebase">
+                <i class="tech-mark firebase">F</i><span>Firebase</span>
+              </div>
+              <a
+                class="hero-platform hero-pathway etl-pathway"
+                href="#technologies"
+                data-open-tech="etl"
+                aria-label="ETL and migration technologies"
+                title="ETL / Migration"
+              >
+                <span>ETL & Migration</span>
+              </a>
+              <a
+                class="hero-platform hero-pathway reporting-pathway"
+                href="#technologies"
+                data-open-tech="reporting"
+                aria-label="Reporting and analytics technologies"
+                title="Reporting / Analytics"
+              >
+                <span>Reporting & Analytics</span>
+              </a>
+            </div>
+            <a class="view-tech-link" href="#technologies"
+              >View all technologies <span>↓</span></a
+            >
+            <div class="actions">
+              <a class="btn hero-primary" href="#contact"
+                >Schedule a Database Audit <span>→</span></a
+              ><button
+                class="btn secondary hero-secondary ai-brief-trigger"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="nilanAiDrawer"
+              >
+                Get the 30-second overview <span aria-hidden="true">✦</span>
+              </button>
+            </div>
+            <div class="hero-trust">
+              <span class="status-dot"></span
+              ><span>Available for database audits and migration planning</span>
             </div>
           </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="results" class="results animate-on-scroll section-separator">
-    <div class="results-inner">
-      <p class="section-label">Real Impact</p>
-      <h2 class="section-title">Database results that matter</h2>
-      <p class="section-desc">Our engineering-led approach delivers measurable improvements in performance, cost, and migration success.</p>
-      <div class="result-grid">
-        <div class="result-card">
-          <strong>60%</strong>
-          <span>Reduced query latency across production environments</span>
-        </div>
-        <div class="result-card">
-          <strong>30%</strong>
-          <span>Cut cloud database costs with optimized architecture</span>
-        </div>
-        <div class="result-card">
-          <strong>50+</strong>
-          <span>Successful database migrations completed</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="about animate-on-scroll">
-    <div class="about-inner">
-      <p class="section-label">About Us</p>
-      <h2 class="section-title">Expert Database Management & Support</h2>
-      <p class="section-desc">Building data solutions that make a real impact</p>
-      <p>At Nilan DataBytes, we are committed to delivering database consulting, engineering, and support for robust, high-performing data solutions. Our services include database architecture, ETL strategy, cloud migration planning, and managed operations, backed by deep expertise in SQL Server, PostgreSQL, MySQL, Azure SQL, and modern data platforms.</p>
-      <p>Our passion lies in data integrity, performance tuning, and turning complex data challenges into reliable, maintainable systems with a consulting-first approach.</p>
-    </div>
-  </section>
-
-  <section id="how-we-work" class="how-we-work animate-on-scroll section-separator">
-    <div style="max-width: var(--container); margin: 0 auto;">
-      <p class="section-label">How We Work</p>
-      <h2 class="section-title">Methodology & Tools</h2>
-      <p class="section-desc">Leveraging industry best practices and proven tools to deliver exceptional results</p>
-      <div class="tools-grid">
-        <div class="tool-card">
-          <h3>Discovery & Planning</h3>
-          <p class="sub">Structured approach for every project</p>
-          <ul>
-            <li>Requirements analysis and data assessment</li>
-            <li>Migration planning with minimal downtime</li>
-            <li>Performance baseline and capacity planning</li>
-            <li>Security and compliance review</li>
-          </ul>
-        </div>
-        <div class="tool-card">
-          <h3>Execution & Support</h3>
-          <p class="sub">Reliable delivery and ongoing maintenance</p>
-          <ul>
-            <li>Phased migrations with validation checkpoints</li>
-            <li>Documentation and knowledge transfer</li>
-            <li>24/7 monitoring and alerting setup</li>
-            <li>Ongoing optimization and support</li>
-          </ul>
-        </div>
-      </div>
-      <p class="tool-note">💡 By combining structured methodology with hands-on expertise, we deliver projects on time, within scope, and with exceptional quality.</p>
-    </div>
-  </section>
-
-  <section id="services" class="services animate-on-scroll section-separator">
-    <p class="section-label">Services We Provide</p>
-    <h2 class="section-title">Take Control of Your Database Environment</h2>
-    <p class="section-desc">We are a team of expert database administrators passionate about helping businesses optimize, secure, and scale their data infrastructure.</p>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Database Engineering</h3>
-        <p class="benefit">Custom database architecture and optimization for scalable systems.</p>
-        <p>Comprehensive care for your databases: installation, optimization, security, and 24/7 support. Focus on your business while we keep your databases running smoothly.</p>
-        <a href="#contact" class="service-link">Explore →</a>
-      </div>
-      <div class="service-card">
-        <h3>Performance Audits</h3>
-        <p class="benefit">Identify and resolve performance bottlenecks for faster queries.</p>
-        <p>Identify bottlenecks like slow queries and inefficient indexing. Secure your databases with proactive audits to safeguard valuable data.</p>
-        <a href="#contact" class="service-link">Audit →</a>
-      </div>
-      <div class="service-card">
-        <h3>ETL Architecture</h3>
-        <p class="benefit">Design reliable ETL pipelines for seamless data flow.</p>
-        <p>Strategic guidance to optimize performance, security, and scalability, with actionable recommendations tailored to your database needs.</p>
-        <a href="#contact" class="service-link">Consult →</a>
-      </div>
-      <div class="service-card">
-        <h3>Managed DBA Services</h3>
-        <p class="benefit">24/7 monitoring and maintenance without full-time hires.</p>
-        <p>24/7 expert monitoring, support, and maintenance without hiring full-time staff, ensuring database availability and optimization.</p>
-        <a href="#contact" class="service-link">Monitor →</a>
-      </div>
-      <div class="service-card">
-        <h3>Migration & Cloud Modernization</h3>
-        <p class="benefit">Seamless cloud migrations with cost optimization.</p>
-        <p>Reduce cloud costs while enhancing performance with tailored strategies to optimize your cloud database infrastructure.</p>
-        <a href="#contact" class="service-link">Optimize →</a>
-      </div>
-      <div class="service-card">
-        <h3>Database Reliability Engineering</h3>
-        <p class="benefit">Proactive security measures and compliance audits.</p>
-        <p>Proactive support including hotfixes, troubleshooting, performance tuning, and critical patching with defined SLA response times.</p>
-        <a href="#contact" class="service-link">Support →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="training" class="training animate-on-scroll section-separator">
-    <div class="training-inner">
-      <p class="section-label">Training Classes</p>
-      <h2 class="section-title">Database & Cloud Training for Freshers and Professionals</h2>
-      <p class="section-desc">Nilan DataBytes provides practical, project-focused training for students, freshers, and working professionals who want to build real database, ETL, and cloud data engineering skills.</p>
-      <div class="training-mentor">
-        <img src="assets/team/database-cloud-trainer.jpg" alt="Database and cloud trainer leading practical classes" />
-        <div class="training-mentor-content">
-          <h3>Training led by a database and cloud tutor</h3>
-          <p class="training-mentor-role">Database, GCP and cloud technology trainer</p>
-          <p>Our trainer supports Nilan DataBytes classes and also conducts external training for learners, job seekers, working professionals, and teams that need hands-on database and cloud skills.</p>
-          <div class="training-badges">
-            <span>GCP</span>
-            <span>Cloud Platforms</span>
-            <span>Database Concepts</span>
-            <span>Migration Scenarios</span>
-            <span>Interview Guidance</span>
+          <div
+            class="ops-console reveal"
+            id="opsCenter"
+            aria-label="Interactive database operations center"
+          >
+            <div class="ops-topbar">
+              <div>
+                <span class="console-mark"></span>DATABASE OPERATIONS CENTER
+              </div>
+              <div class="ops-live"><i></i> ALL SYSTEMS OPERATIONAL</div>
+            </div>
+            <div class="ops-layout">
+              <div
+                class="ops-services"
+                role="list"
+                aria-label="Database capabilities"
+              >
+                <button
+                  class="ops-service active"
+                  data-capability="monitoring"
+                  data-title="Always-on database care"
+                  data-description="We monitor health, availability and workload signals before small issues become incidents."
+                  data-kpi="99.99%"
+                  data-label="availability target"
+                >
+                  <span class="service-icon">◉</span
+                  ><span><b>Monitoring</b><small>Health & alerts</small></span>
+                </button>
+                <button
+                  class="ops-service"
+                  data-capability="architecture"
+                  data-title="Architecture built to scale"
+                  data-description="We design schemas, data flows, resilience and capacity around how your business actually operates."
+                  data-kpi="Scale"
+                  data-label="without redesign"
+                >
+                  <span class="service-icon">◇</span
+                  ><span
+                    ><b>Architecture</b><small>Design & resilience</small></span
+                  >
+                </button>
+                <button
+                  class="ops-service"
+                  data-capability="development"
+                  data-title="Development that stays maintainable"
+                  data-description="From stored procedures to ETL pipelines, we build clean database solutions your team can support."
+                  data-kpi="Clean"
+                  data-label="production delivery"
+                >
+                  <span class="service-icon">&lt;/&gt;</span
+                  ><span><b>Development</b><small>SQL & ETL</small></span>
+                </button>
+                <button
+                  class="ops-service"
+                  data-capability="optimization"
+                  data-title="Faster queries, lower cost"
+                  data-description="Execution-plan analysis, indexing and workload tuning turn slow systems into responsive platforms."
+                  data-kpi="60%"
+                  data-label="latency reduction achieved"
+                >
+                  <span class="service-icon">↗</span
+                  ><span
+                    ><b>Optimization</b
+                    ><small>Tuning & performance</small></span
+                  >
+                </button>
+                <button
+                  class="ops-service"
+                  data-capability="administration"
+                  data-title="Confident day-to-day administration"
+                  data-description="Backups, recovery, patching, security and routine maintenance are handled with clear accountability."
+                  data-kpi="24/7"
+                  data-label="support options"
+                >
+                  <span class="service-icon">✓</span
+                  ><span
+                    ><b>Administration</b><small>DBA operations</small></span
+                  >
+                </button>
+                <button
+                  class="ops-service"
+                  data-capability="cloud"
+                  data-title="Modernize without migration drama"
+                  data-description="We plan cloud moves, validate cutovers and right-size infrastructure across Azure, AWS and GCP."
+                  data-kpi="50+"
+                  data-label="migrations delivered"
+                >
+                  <span class="service-icon">☁</span
+                  ><span
+                    ><b>Cloud & Training</b
+                    ><small>Modernize & enable</small></span
+                  >
+                </button>
+              </div>
+              <div class="ops-dashboard">
+                <div class="dashboard-heading">
+                  <div>
+                    <small>YOUR DATABASE, UNDER CONTROL</small>
+                    <h3 id="opsTitle">Always-on database care</h3>
+                  </div>
+                  <span class="environment">PRODUCTION</span>
+                </div>
+                <p id="opsDescription">
+                  We monitor health, availability and workload signals before
+                  small issues become incidents.
+                </p>
+                <div class="telemetry-row">
+                  <div class="telemetry-chart">
+                    <div class="chart-label">
+                      <span>WORKLOAD RESPONSE</span><b><i></i> LIVE</b>
+                    </div>
+                    <svg
+                      viewBox="0 0 420 130"
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                    >
+                      <defs>
+                        <linearGradient
+                          id="chartFill"
+                          x1="0"
+                          y1="0"
+                          x2="0"
+                          y2="1"
+                        >
+                          <stop stop-color="#37dfee" stop-opacity=".35" />
+                          <stop
+                            offset="1"
+                            stop-color="#37dfee"
+                            stop-opacity="0"
+                          />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        class="chart-area"
+                        d="M0 105 C35 100 48 72 80 78 S126 98 153 67 S201 39 228 57 S278 89 306 51 S355 35 420 26 L420 130 L0 130Z"
+                      />
+                      <path
+                        class="chart-line"
+                        d="M0 105 C35 100 48 72 80 78 S126 98 153 67 S201 39 228 57 S278 89 306 51 S355 35 420 26"
+                      />
+                      <circle class="chart-pulse" cx="420" cy="26" r="5" />
+                    </svg>
+                  </div>
+                  <div class="ops-kpi" id="availabilityCard">
+                    <strong id="opsKpi">99.99%</strong
+                    ><span id="opsKpiLabel">availability target</span>
+                  </div>
+                </div>
+                <div class="health-grid">
+                  <div id="latencyCard">
+                    <span id="metricOneLabel">Query latency</span
+                    ><strong id="latencyValue">42 ms</strong
+                    ><small class="good" id="latencyChange"
+                      >↓ 18% optimized</small
+                    >
+                  </div>
+                  <div id="healthCard">
+                    <span id="metricTwoLabel">Database health</span
+                    ><strong id="healthValue">Stable</strong
+                    ><small class="good" id="healthChange"
+                      >✓ Checks passed</small
+                    >
+                  </div>
+                  <div id="alertsCard">
+                    <span id="metricThreeLabel">Active alerts</span
+                    ><strong id="alertsValue">0</strong
+                    ><small class="good" id="alertsChange">● Healthy</small>
+                  </div>
+                </div>
+                <div class="activity-line">
+                  <span class="activity-icon" id="activityIcon">✓</span>
+                  <div class="activity-copy" id="activityCopy">
+                    <b id="activityTitle">Protection running</b
+                    ><small id="activityDetail"
+                      >Monitoring · performance · resilience · cloud
+                      readiness</small
+                    >
+                  </div>
+                  <div
+                    class="training-tech-list"
+                    id="trainingTechList"
+                    aria-label="Technologies we train"
+                    hidden
+                  >
+                    <b>Technologies we train</b>
+                    <span>SQL Server</span><span>PostgreSQL</span
+                    ><span>MySQL</span><span>SSIS</span><span>ADF</span
+                    ><span>Azure</span><span>GCP</span><span>Databricks</span>
+                  </div>
+                  <time id="activityTime">NOW</time>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="training-grid">
-        <div class="training-card">
-          <h3>Database Foundations</h3>
-          <p>Hands-on classes for learners starting or strengthening their database career path.</p>
-          <div class="training-badges">
-            <span>SQL Server</span>
-            <span>PostgreSQL</span>
-            <span>MySQL</span>
-            <span>Query Writing</span>
-            <span>Stored Procedures</span>
+      </section>
+      <section class="proof">
+        <div class="container proof-row">
+          <div class="proof-item">
+            <strong>16+</strong><span>years of database expertise</span>
           </div>
-          <a href="#contact" class="service-link">Ask about database training →</a>
-        </div>
-        <div class="training-card">
-          <h3>ETL & Data Integration</h3>
-          <p>Learn how production data pipelines are designed, validated, monitored, and maintained.</p>
-          <div class="training-badges">
-            <span>SSIS</span>
-            <span>Azure Data Factory</span>
-            <span>ETL Design</span>
-            <span>Data Warehousing</span>
-            <span>Reporting</span>
+          <div class="proof-item">
+            <strong>50+</strong><span>successful migrations</span>
           </div>
-          <a href="#contact" class="service-link">Ask about ETL training →</a>
-        </div>
-        <div class="training-card">
-          <h3>Cloud Data Engineering</h3>
-          <p>Build cloud-ready skills for modern data platforms, migrations, and analytics workloads.</p>
-          <div class="training-badges">
-            <span>Azure Databricks</span>
-            <span>Google Cloud</span>
-            <span>Azure SQL</span>
-            <span>Cloud Migration</span>
-            <span>Performance Tuning</span>
+          <div class="proof-item">
+            <strong>60%</strong><span>query latency reduction achieved</span>
           </div>
-          <a href="#contact" class="service-link">Ask about cloud training →</a>
-        </div>
-      </div>
-      <p class="training-note">Training can be customized for freshers, job seekers, working professionals, and corporate teams, with practical exercises, interview-focused guidance, and real-world database scenarios.</p>
-    </div>
-  </section>
-
-  <section id="skills" class="tech animate-on-scroll section-separator">
-    <p class="section-label">Technologies We Help Manage</p>
-    <h2 class="section-title">We've migrated databases to the cloud, managing millions of daily transactions</h2>
-    <p class="section-desc">Discover solutions for SQL Server, PostgreSQL, MySQL, MongoDB, Azure SQL, and more.</p>
-    <div class="tech-badges">
-      <span>SQL Server</span>
-      <span>PostgreSQL</span>
-      <span>MySQL</span>
-      <span>MongoDB</span>
-      <span>Azure SQL</span>
-      <span>Azure Data Factory</span>
-      <span>SSIS</span>
-      <span>SSRS</span>
-      <span>ETL</span>
-      <span>AWS RDS</span>
-      <span>Snowflake</span>
-      <span>Power BI</span>
-    </div>
-  </section>
-
-  <section id="why-choose" class="why-choose animate-on-scroll">
-    <p class="section-label">Why Choose Us</p>
-    <h2 class="section-title">Enterprise-Grade Database Support</h2>
-    <div class="why-grid">
-      <div class="why-card">
-        <h4>Performance & Cost Optimization</h4>
-        <p>Our services are designed to reduce total cost of operations while maximizing efficiency and availability.</p>
-      </div>
-      <div class="why-card">
-        <h4>Performance Enhancement</h4>
-        <p>We achieve significant improvements in system performance through query tuning and optimized infrastructure.</p>
-      </div>
-      <div class="why-card">
-        <h4>Enhanced Security</h4>
-        <p>We strengthen database security with advanced protocols, 24/7 support, and data integrity measures.</p>
-      </div>
-      <div class="why-card">
-        <h4>24/7 Support</h4>
-        <p>Round-the-clock support ensuring faster issue resolution and minimal downtime.</p>
-      </div>
-      <div class="why-card">
-        <h4>Observability & Monitoring</h4>
-        <p>Real-time monitoring tools and alarms for proactive issue detection and reduced unplanned downtime.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects" class="projects animate-on-scroll">
-    <p class="section-label">Our Work</p>
-    <h2 class="section-title">Case Studies</h2>
-    <p class="section-desc">Transforming data challenges into reliable solutions</p>
-    <div class="projects-grid">
-      <div class="project-card">
-        <a href="#contact">
-          <div class="project-thumb">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="24" cy="12" rx="16" ry="8" fill="#0d9488" opacity="0.2"/>
-              <ellipse cx="24" cy="12" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
-              <ellipse cx="24" cy="24" rx="16" ry="8" fill="#0d9488" opacity="0.15"/>
-              <ellipse cx="24" cy="24" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
-              <ellipse cx="24" cy="36" rx="16" ry="8" fill="#0d9488" opacity="0.1"/>
-              <ellipse cx="24" cy="36" rx="16" ry="8" stroke="#0d9488" stroke-width="2" fill="none"/>
-            </svg>
+          <div class="proof-item">
+            <strong>24/7</strong><span>support options available</span>
           </div>
-          <div class="project-content">
-            <span class="project-tag">DATA WAREHOUSE</span>
-            <h3>Enterprise Data Warehouse</h3>
-            <p>Built a dimensional data warehouse with ETL pipelines, star schema design, and incremental loads for analytics and reporting.</p>
-            <span class="project-stack">Tech Stack: SQL Server, SSIS, Azure</span>
-            <span class="project-link">Discuss a similar project →</span>
+        </div>
+      </section>
+      <section class="technology-section" id="technologies">
+        <div class="container">
+          <div class="section-head technology-heading">
+            <p class="eyebrow">Technology ecosystem</p>
+            <h2>Engineering across your data stack</h2>
+            <p>
+              From operational databases to integration pipelines, reporting and
+              cloud platforms, we help teams design, improve and operate the
+              systems behind their data.
+            </p>
           </div>
-        </a>
-      </div>
-      <div class="project-card">
-        <a href="#contact">
-          <div class="project-thumb">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M32 28c0 4-4 8-8 8s-8-4-8-8c0-4 4-8 8-8s8 4 8 8z" fill="#0d9488" opacity="0.2"/>
-              <path d="M24 20c4 0 8 4 8 8s-4 8-8 8-8-4-8-8 4-8 8-8z" stroke="#0d9488" stroke-width="2" fill="none"/>
-              <path d="M16 24h-4m4 0l-2-2m2 2l-2 2" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M32 24h4m-4 0l2-2m-2 2l2 2" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+          <div class="technology-explorer">
+            <div
+              class="technology-tabs"
+              role="tablist"
+              aria-label="Technology categories"
+            >
+              <button
+                role="tab"
+                id="tab-databases"
+                aria-controls="panel-databases"
+                aria-selected="true"
+                data-tech-tab="databases"
+              >
+                Databases
+              </button>
+              <button
+                role="tab"
+                id="tab-etl"
+                aria-controls="panel-etl"
+                aria-selected="false"
+                tabindex="-1"
+                data-tech-tab="etl"
+              >
+                ETL & Integration
+              </button>
+              <button
+                role="tab"
+                id="tab-reporting"
+                aria-controls="panel-reporting"
+                aria-selected="false"
+                tabindex="-1"
+                data-tech-tab="reporting"
+              >
+                Reporting & BI
+              </button>
+              <button
+                role="tab"
+                id="tab-cloud"
+                aria-controls="panel-cloud"
+                aria-selected="false"
+                tabindex="-1"
+                data-tech-tab="cloud"
+              >
+                Cloud Data
+              </button>
+            </div>
+            <div
+              class="technology-panel"
+              id="panel-databases"
+              role="tabpanel"
+              aria-labelledby="tab-databases"
+              data-tech-panel="databases"
+            >
+              <article class="technology-card">
+                <i class="tech-mark ms">SQL</i>
+                <div><b>SQL Server</b><small>Enterprise database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark az">AZ</i>
+                <div><b>Azure SQL</b><small>Managed cloud database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark oracle">O</i>
+                <div>
+                  <b>Oracle Database</b><small>Enterprise database</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark pg">PG</i>
+                <div><b>PostgreSQL</b><small>Open-source database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark my">my</i>
+                <div><b>MySQL</b><small>Application database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark firebird">FB</i>
+                <div><b>Firebird</b><small>Relational database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark mongo">M</i>
+                <div><b>MongoDB</b><small>Document database</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark cassandra">C</i>
+                <div>
+                  <b>Apache Cassandra</b><small>Distributed database</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark datastax">DS</i>
+                <div>
+                  <b>DataStax Cassandra</b
+                  ><small>Managed Cassandra platform</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark firebase">F</i>
+                <div><b>Firebase</b><small>Realtime app database</small></div>
+              </article>
+            </div>
+            <div
+              class="technology-panel"
+              id="panel-etl"
+              role="tabpanel"
+              aria-labelledby="tab-etl"
+              data-tech-panel="etl"
+              hidden
+            >
+              <article class="technology-card">
+                <i class="tech-mark ssis">SSIS</i>
+                <div><b>SSIS</b><small>Data integration</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark adf">ADF</i>
+                <div>
+                  <b>Azure Data Factory</b><small>Cloud orchestration</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark talend">T</i>
+                <div><b>Talend</b><small>Integration platform</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark bricks">◆</i>
+                <div><b>Databricks</b><small>Lakehouse engineering</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark python">PY</i>
+                <div><b>Python</b><small>Data engineering</small></div>
+              </article>
+            </div>
+            <div
+              class="technology-panel"
+              id="panel-reporting"
+              role="tabpanel"
+              aria-labelledby="tab-reporting"
+              data-tech-panel="reporting"
+              hidden
+            >
+              <article class="technology-card">
+                <i class="tech-mark ssrs">SSRS</i>
+                <div><b>SSRS</b><small>Operational reporting</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark pbi">BI</i>
+                <div><b>Power BI</b><small>Business intelligence</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark pbi">P</i>
+                <div>
+                  <b>Paginated Reports</b><small>Pixel-perfect reporting</small>
+                </div>
+              </article>
+            </div>
+            <div
+              class="technology-panel"
+              id="panel-cloud"
+              role="tabpanel"
+              aria-labelledby="tab-cloud"
+              data-tech-panel="cloud"
+              hidden
+            >
+              <article class="technology-card">
+                <i class="tech-mark az">MI</i>
+                <div><b>Azure SQL MI</b><small>Managed instance</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark syn">SYN</i>
+                <div><b>Azure Synapse</b><small>Analytics platform</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark bricks">◆</i>
+                <div><b>Azure Databricks</b><small>Cloud lakehouse</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark aws">AWS</i>
+                <div>
+                  <b>Amazon Web Services</b><small>Cloud data services</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark gcp">GCP</i>
+                <div>
+                  <b>Google Cloud Platform</b><small>Cloud data services</small>
+                </div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark bq">BQ</i>
+                <div><b>BigQuery</b><small>Cloud data warehouse</small></div>
+              </article>
+              <article class="technology-card">
+                <i class="tech-mark snowflake">SF</i>
+                <div><b>Snowflake</b><small>Cloud data platform</small></div>
+              </article>
+            </div>
           </div>
-          <div class="project-content">
-            <span class="project-tag">MIGRATION</span>
-            <h3>Legacy to Cloud Migration</h3>
-            <p>Migrated on-prem SQL Server to Azure SQL with zero data loss, cutover planning, and post-migration validation.</p>
-            <span class="project-stack">Tech Stack: SQL Server, Azure SQL, Azure Data Factory</span>
-            <span class="project-link">Discuss a similar project →</span>
+        </div>
+      </section>
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Core services</p>
+            <h2>Focused expertise across the database lifecycle</h2>
+            <p>
+              From a single performance bottleneck to an end-to-end
+              modernization program, every engagement starts with a clear
+              technical outcome.
+            </p>
           </div>
-        </a>
-      </div>
-      <div class="project-card">
-        <a href="#contact">
-          <div class="project-thumb">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 8l-8 16h16l-8 16" stroke="#0d9488" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#0d9488" opacity="0.2"/>
-            </svg>
+          <div class="grid three">
+            <article class="card">
+              <span class="icon">DB</span>
+              <h3>Database Engineering</h3>
+              <p>
+                Architecture, development and optimization for scalable,
+                maintainable systems.
+              </p>
+            </article>
+            <article class="card">
+              <span class="icon">↗</span>
+              <h3>Performance Audits</h3>
+              <p>
+                Find slow queries, indexing gaps and capacity risks with an
+                actionable plan.
+              </p>
+            </article>
+            <article class="card">
+              <span class="icon">ETL</span>
+              <h3>ETL Architecture</h3>
+              <p>
+                Design resilient pipelines with validation, observability and
+                reliable delivery.
+              </p>
+            </article>
+            <article class="card">
+              <span class="icon">24</span>
+              <h3>Managed DBA</h3>
+              <p>
+                Monitoring, backups, maintenance and operational support matched
+                to your SLA.
+              </p>
+            </article>
+            <article class="card">
+              <span class="icon">☁</span>
+              <h3>Cloud Modernization</h3>
+              <p>
+                Plan and execute low-risk migrations with validation and cost
+                optimization.
+              </p>
+            </article>
+            <article class="card">
+              <span class="icon">✓</span>
+              <h3>Database Reliability</h3>
+              <p>
+                Proactive monitoring, incident support, patching and recovery
+                readiness.
+              </p>
+            </article>
           </div>
-          <div class="project-content">
-            <span class="project-tag">PERFORMANCE</span>
-            <h3>Query & Index Optimization</h3>
-            <p>Resolved slow query issues, designed indexes, updated statistics, and improved application response times by 60%.</p>
-            <span class="project-stack">Tech Stack: SQL Server, PostgreSQL</span>
-            <span class="project-link">Discuss a similar project →</span>
+          <div class="actions">
+            <a class="btn text" href="services.html">Explore all services →</a>
           </div>
-        </a>
+        </div>
+      </section>
+      <section class="section alt">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Selected clients</p>
+            <h2>Trusted for hands-on database delivery</h2>
+          </div>
+          <div class="logos">
+            <div class="logo-card">
+              <img src="assets/client-logos/cogneta.svg" alt="Cogneta" />
+            </div>
+            <div class="logo-card">
+              <img src="assets/client-logos/datalogixs.svg" alt="Datalogixs" />
+            </div>
+            <div class="logo-card">
+              <img
+                src="assets/client-logos/dignity-aspire.svg"
+                alt="Dignity Aspire"
+              />
+            </div>
+            <div class="logo-card">
+              <img src="assets/client-logos/ellow.svg" alt="Ellow" />
+            </div>
+            <div class="logo-card">
+              <img
+                src="assets/client-logos/pelsoftlabs.svg"
+                alt="Pelsoftlabs"
+              />
+            </div>
+            <div class="logo-card">
+              <img src="assets/client-logos/voiceracx.svg" alt="Voicera CX" />
+            </div>
+          </div>
+          <blockquote class="quote">
+            “Nilan DataBytes delivered strong SQL work, communicated clearly and
+            met every deadline. The team absorbed pressure and helped us
+            navigate complex database decisions.”
+            <strong>— Delivery Director, Voicera Analytics</strong>
+          </blockquote>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="eyebrow">Case study highlights</p>
+            <h2>Evidence, not just capabilities</h2>
+            <p>
+              A snapshot of the practical outcomes delivered across performance,
+              migration and data engineering.
+            </p>
+          </div>
+          <div class="grid three">
+            <article class="card case-card">
+              <div class="case-art">▦</div>
+              <div class="case-body">
+                <span class="tag">Data warehouse</span>
+                <h3>Enterprise analytics foundation</h3>
+                <p>
+                  Dimensional warehouse and incremental ETL pipelines built for
+                  dependable reporting.
+                </p>
+                <a class="btn text" href="case-studies.html#warehouse"
+                  >Read the story →</a
+                >
+              </div>
+            </article>
+            <article class="card case-card">
+              <div class="case-art">☁</div>
+              <div class="case-body">
+                <span class="tag">Migration</span>
+                <h3>Legacy SQL to Azure</h3>
+                <p>
+                  A validated cloud cutover plan designed to protect data and
+                  minimize interruption.
+                </p>
+                <a class="btn text" href="case-studies.html#migration"
+                  >Read the story →</a
+                >
+              </div>
+            </article>
+            <article class="card case-card">
+              <div class="case-art">⚡</div>
+              <div class="case-body">
+                <span class="tag">Performance</span>
+                <h3>60% faster response</h3>
+                <p>
+                  Query tuning, indexing and statistics improvements resolved
+                  production slowdowns.
+                </p>
+                <a class="btn text" href="case-studies.html#performance"
+                  >Read the story →</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="cta-band">
+        <div class="container cta-row">
+          <div>
+            <h2>Build practical database and cloud skills</h2>
+            <p>
+              Project-focused training for freshers, professionals and corporate
+              teams.
+            </p>
+          </div>
+          <a class="btn" href="training.html">Explore Training</a>
+        </div>
+      </section>
+      <section class="section" id="contact">
+        <div class="container contact-grid">
+          <div>
+            <div class="section-head">
+              <p class="eyebrow">Discuss a project</p>
+              <h2>Start with a focused technical conversation</h2>
+              <p>
+                Tell us your platform and challenge. We’ll use the first
+                conversation to clarify scope, risk and the most useful next
+                step.
+              </p>
+            </div>
+            <div class="contact-list">
+              <a href="tel:+919715149369">☎ +91 97151 49369</a
+              ><a href="mailto:contact@nilandatabytes.com"
+                >✉ contact@nilandatabytes.com</a
+              ><a href="https://wa.me/919715149369"
+                >◉ WhatsApp project enquiry</a
+              >
+            </div>
+          </div>
+          <form
+            class="form"
+            action="https://formspree.io/f/mbdwaqnp"
+            method="post"
+          >
+            <div class="field">
+              <label for="name">Name *</label
+              ><input id="name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Company email *</label
+              ><input id="email" type="email" name="email" required />
+            </div>
+            <div class="field full">
+              <label for="helpType">What do you need help with? *</label
+              ><select id="helpType" name="help_type" required>
+                <option value="">Select an area</option>
+                <option value="database">Database engineering</option>
+                <option value="etl">ETL & data integration</option>
+                <option value="reporting">
+                  Reporting & business intelligence
+                </option>
+                <option value="cloud">Cloud migration and modernization</option>
+                <option value="performance">Performance optimization</option>
+                <option value="monitoring">Monitoring and managed DBA</option>
+                <option value="training">Technical training</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+            <fieldset
+              class="field full technology-field"
+              id="technologyField"
+              disabled
+            >
+              <legend>Which technologies are you using? *</legend>
+              <p class="field-hint" id="technologyHint">
+                Choose an area first. You can select more than one technology.
+              </p>
+              <div
+                class="form-tech-options"
+                id="formTechOptions"
+                role="group"
+                aria-describedby="technologyHint technologyError"
+              ></div>
+              <input
+                type="hidden"
+                id="selectedTechnologies"
+                name="technologies"
+              />
+              <p
+                class="field-error"
+                id="technologyError"
+                aria-live="polite"
+              ></p>
+            </fieldset>
+            <div class="field full">
+              <label for="timeline">When do you need help?</label>
+              <select id="timeline" name="timeline">
+                <option value="">Select a timeframe</option>
+                <option>Planning and research</option>
+                <option>Within three months</option>
+                <option>This month</option>
+                <option>Production issue</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="message">What is the main challenge? *</label
+              ><textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="field full">
+              <button class="btn" type="submit">Discuss a Project</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div class="ai-drawer-overlay" data-ai-close hidden></div>
+    <aside
+      class="ai-drawer"
+      id="nilanAiDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="aiDrawerTitle"
+      aria-hidden="true"
+      inert
+      tabindex="-1"
+    >
+      <header class="ai-drawer-header">
+        <div class="ai-identity">
+          <span class="ai-orb" aria-hidden="true"><i></i></span>
+          <div>
+            <small>GUIDED COMPANY OVERVIEW</small>
+            <h2 id="aiDrawerTitle">Nilan AI Brief</h2>
+          </div>
+        </div>
+        <button
+          class="ai-close"
+          type="button"
+          data-ai-close
+          aria-label="Close Nilan AI Brief"
+        >
+          ×
+        </button>
+      </header>
+      <div class="ai-drawer-body">
+        <div class="ai-summary-card">
+          <div class="ai-message-label">
+            <span class="ai-spark">✦</span> APPROVED COMPANY SUMMARY
+          </div>
+          <div class="ai-typing" id="aiTyping" aria-live="polite">
+            <span></span><span></span><span></span>
+          </div>
+          <p id="aiSummary"></p>
+        </div>
+
+        <div class="ai-guided-content" id="aiGuidedContent" hidden>
+          <div class="ai-metrics" aria-label="Company metrics">
+            <div>
+              <strong>16+</strong><span>years of database experience</span>
+            </div>
+            <div><strong>50+</strong><span>completed migrations</span></div>
+            <div>
+              <strong>Up to 60%</strong
+              ><span>latency reduction in a featured engagement</span>
+            </div>
+            <div>
+              <strong>24/7</strong><span>support options available</span>
+            </div>
+          </div>
+
+          <section class="ai-question" aria-labelledby="aiQuestionTitle">
+            <p class="ai-step">CHOOSE YOUR PRIORITY</p>
+            <h3 id="aiQuestionTitle">
+              What database challenge are you facing?
+            </h3>
+            <div class="ai-options">
+              <button type="button" data-ai-topic="performance">
+                <span>↗</span>Slow application or queries
+              </button>
+              <button type="button" data-ai-topic="monitoring">
+                <span>◉</span>Database monitoring
+              </button>
+              <button type="button" data-ai-topic="administration">
+                <span>✓</span>DBA administration and support
+              </button>
+              <button type="button" data-ai-topic="migration">
+                <span>☁</span>Cloud migration
+              </button>
+              <button type="button" data-ai-topic="development">
+                <span>&lt;/&gt;</span>Database or ETL development
+              </button>
+              <button type="button" data-ai-topic="training">
+                <span>◇</span>Database and cloud training
+              </button>
+            </div>
+          </section>
+
+          <section
+            class="ai-recommendation"
+            id="aiRecommendation"
+            aria-live="polite"
+            hidden
+          >
+            <div class="ai-message-label">
+              <span class="ai-spark">✦</span> RECOMMENDED NEXT STEP
+            </div>
+            <h3 id="aiResponseTitle"></h3>
+            <p id="aiResponseText"></p>
+            <div class="ai-service-line">
+              <small>RECOMMENDED SERVICE</small
+              ><strong id="aiResponseService"></strong>
+            </div>
+            <a class="btn ai-contact" href="#contact"
+              >Talk to a Database Expert <span>→</span></a
+            >
+          </section>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <section id="faq" class="faq animate-on-scroll">
-    <p class="section-label">Frequently Asked Questions</p>
-    <h2 class="section-title">Need Expert Database Solutions?</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h4>Do you provide auditing and monitoring services?</h4>
-        <p>Yes. We offer real-time monitoring and auditing to track performance and maintain database health, with periodic health reports.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Can you help with cloud database migration?</h4>
-        <p>We handle seamless database migration to cloud providers like AWS, Azure, and Google Cloud, ensuring minimal downtime and data integrity.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Do you offer database performance optimization?</h4>
-        <p>Our team optimizes databases through query tuning, index adjustments, and system configurations for improved response times.</p>
-      </div>
-      <div class="faq-item">
-        <h4>How do we start using your services?</h4>
-        <p>Schedule a consultation where we assess your database environment and propose a customized solution to enhance performance and scalability.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" class="contact animate-on-scroll">
-    <p class="section-label">Talk to a Database Expert Today</p>
-    <h2 class="section-title">Ready to Transform Your Database?</h2>
-    <p class="section-desc">Database solutions provided by Nilan DataBytes expert team</p>
-    <p class="form-explanation">Tell us your database platform and challenge</p>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Nilan DataBytes</h3>
-        <p class="role">Database Admin & Engineering Support</p>
-        <a class="contact-link" href="tel:+919715149369">
-          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.7c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"/>
-          </svg>
-          <span>+91-9715149369</span>
-        </a>
-        <a class="contact-link" href="https://wa.me/919715149369" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 2a9.8 9.8 0 0 0-8.5 14.7L2.4 22l5.4-1.4A9.9 9.9 0 1 0 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.2.8.9-3.1-.2-.3A8.1 8.1 0 1 1 12 20.1zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.6.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s.9 2.5 1.1 2.7c.1.2 1.9 2.9 4.6 4.1.6.3 1.1.4 1.5.5.6.2 1.2.2 1.7.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/>
-          </svg>
-          <span>Chat on WhatsApp for project inquiries</span>
-        </a>
-        <a class="contact-link" href="mailto:contact@nilandatabytes.com">
-          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M4 5h16c1.1 0 2 .9 2 2v10c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V7c0-1.1.9-2 2-2zm8 7.4L4 7.6V17h16V7.6l-8 4.8zm0-2.3L19.5 7h-15L12 10.1z"/>
-          </svg>
-          <span>contact@nilandatabytes.com</span>
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/company/113022948" target="_blank" rel="noopener">
-          <svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M5 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5zM3 10h4v11H3V10zm6 0h3.8v1.5h.1c.5-.9 1.8-1.8 3.7-1.8 4 0 4.7 2.6 4.7 6V21h-4v-4.8c0-1.1 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5V21H9V10z"/>
-          </svg>
-          <span>Connect with us on LinkedIn</span>
-        </a>
-        <p class="trust-note">Free 30-minute technical consultation available</p>
-      </div>
-      <form class="contact-form" action="https://formspree.io/f/mbdwaqnp" method="POST">
-        <div class="form-field">
-          <label for="contact-name">Name *</label>
-          <input id="contact-name" type="text" name="name" placeholder="Your name" autocomplete="name" required />
+      <footer class="ai-drawer-footer">
+        <span><i></i> Guided, approved information</span>
+        <span>No external AI or visitor-data processing</span>
+      </footer>
+    </aside>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a class="brand" href="index.html"
+              ><img src="logo.svg" alt="" /><span
+                ><strong>Nilan DataBytes</strong
+                ><small>Reliable data systems, built hands-on.</small></span
+              ></a
+            >
+          </div>
+          <div>
+            <h4>Expertise</h4>
+            <a href="services.html">Services</a
+            ><a href="training.html">Training</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="about.html">About & Team</a
+            ><a href="case-studies.html">Case Studies</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="mailto:contact@nilandatabytes.com">Email us</a
+            ><a href="https://www.linkedin.com/company/113022948">LinkedIn</a>
+          </div>
         </div>
-        <div class="form-field">
-          <label for="contact-email">Company email *</label>
-          <input id="contact-email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required />
-        </div>
-        <div class="form-field">
-          <label for="contact-phone">Mobile number</label>
-          <input id="contact-phone" type="tel" name="phone" placeholder="+91 98765 43210" autocomplete="tel" />
-        </div>
-        <div class="form-field">
-          <label for="contact-database">Database platform *</label>
-          <select id="contact-database" name="database" required>
-            <option value="">Select database</option>
-            <option value="sqlserver">SQL Server</option>
-            <option value="oracle">Oracle</option>
-            <option value="firebase">Firebase</option>
-            <option value="ibm-db2">IBM DB2</option>
-            <option value="postgresql">PostgreSQL</option>
-            <option value="mysql">MySQL</option>
-            <option value="mongodb">MongoDB</option>
-            <option value="azuresql">Azure SQL</option>
-            <option value="training">Training / Classes</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="form-field hidden" id="other-database-field">
-          <label for="contact-database-other">Please specify *</label>
-          <input id="contact-database-other" type="text" name="database_other" placeholder="Type your database, tool, or requirement" />
-        </div>
-        <div class="form-field">
-          <label for="contact-message">Message *</label>
-          <textarea id="contact-message" name="message" placeholder="Tell us about your database challenge" required></textarea>
-        </div>
-        <div id="formMessage" class="form-message" aria-live="polite"></div>
-        <p class="privacy-note">We only use your details to respond to your inquiry.</p>
-        <button type="submit" class="btn">Schedule & Enquiry</button>
-      </form>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Services</h4>
-          <a href="#services">Database Admin</a>
-          <a href="#services">Migration Support</a>
-          <a href="#services">Performance Audit</a>
-          <a href="#services">Remote DBA</a>
-          <a href="#training">Training Classes</a>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#about">About Us</a>
-          <a href="#clients">Clients</a>
-          <a href="#team">Team</a>
-          <a href="#projects">Case Studies</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <a href="#contact">Contact Us</a>
+        <div class="footer-bottom">
+          © <span data-year></span> Nilan DataBytes. All rights reserved.
         </div>
       </div>
-      <div class="footer-bottom">
-        <a href="#top" class="logo-wrap" style="justify-content:center;">
-          <img src="logo.svg" alt="Nilan DataBytes logo" class="logo-icon" style="width:24px;height:24px;" />
-          <span class="logo">NILAN DATABYTES</span>
-        </a>
-        <p>© <span id="year"></span> Nilan DataBytes. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Header scroll effect + active nav
-    const header = document.getElementById('header');
-    const navLinks = document.querySelectorAll('.nav a[href^="#"]');
-    const sections = document.querySelectorAll('section[id]');
-
-    function onScroll() {
-      header.classList.toggle('scrolled', window.scrollY > 20);
-
-      let current = '';
-      const scrollY = window.scrollY + 120;
-      sections.forEach(function(s) {
-        const top = s.offsetTop, h = s.offsetHeight;
-        if (scrollY >= top && scrollY < top + h) current = s.getAttribute('id');
-      });
-      navLinks.forEach(function(a) {
-        const href = a.getAttribute('href').slice(1);
-        if (!href) return;
-        a.classList.toggle('active', href === current || (scrollY < 100 && href === 'about'));
-      });
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Mobile menu
-    const menuToggle = document.getElementById('menuToggle');
-    const navMobile = document.getElementById('navMobile');
-    const navOverlay = document.getElementById('navOverlay');
-
-    function openMenu() {
-      menuToggle.classList.add('active');
-      navMobile.classList.add('open');
-      navOverlay.classList.add('open');
-      navMobile.setAttribute('aria-hidden', 'false');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu() {
-      menuToggle.classList.remove('active');
-      navMobile.classList.remove('open');
-      navOverlay.classList.remove('open');
-      navMobile.setAttribute('aria-hidden', 'true');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    menuToggle.addEventListener('click', function() {
-      if (navMobile.classList.contains('open')) closeMenu();
-      else openMenu();
-    });
-    navOverlay.addEventListener('click', closeMenu);
-    navMobile.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', closeMenu);
-    });
-
-    // Scroll-triggered animations
-    const observerOptions = { rootMargin: '0px 0px -80px 0px', threshold: 0.1 };
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
-      observer.observe(el);
-    });
-
-    const contactForm = document.querySelector('.contact-form');
-    const formMessage = document.getElementById('formMessage');
-    const databaseSelect = document.getElementById('contact-database');
-    const otherDatabaseField = document.getElementById('other-database-field');
-    const otherDatabaseInput = document.getElementById('contact-database-other');
-
-    if (contactForm && formMessage) {
-      function toggleOtherDatabaseField() {
-        const showOther = databaseSelect && databaseSelect.value === 'other';
-        if (!otherDatabaseField || !otherDatabaseInput) return;
-
-        otherDatabaseField.classList.toggle('hidden', !showOther);
-        otherDatabaseInput.required = showOther;
-        if (!showOther) otherDatabaseInput.value = '';
-      }
-
-      if (databaseSelect) {
-        databaseSelect.addEventListener('change', toggleOtherDatabaseField);
-        toggleOtherDatabaseField();
-      }
-
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        formMessage.classList.remove('hidden');
-        formMessage.textContent = 'Sending your message...';
-        formMessage.className = 'form-message sending';
-
-        fetch(contactForm.action, {
-          method: 'POST',
-          body: new FormData(contactForm),
-          headers: { 'Accept': 'application/json' }
-        })
-        .then(function(response) {
-          if (response.ok) {
-            formMessage.textContent = 'Thank you! Your message has been sent.';
-            formMessage.className = 'form-message success';
-            contactForm.reset();
-            toggleOtherDatabaseField();
-            setTimeout(function() {
-              formMessage.classList.add('hidden');
-            }, 6000);
-          } else {
-            response.json().then(function(data) {
-              formMessage.textContent = data.error || 'Submission failed. Please try again.';
-              formMessage.className = 'form-message error';
-              setTimeout(function() {
-                formMessage.classList.add('hidden');
-              }, 6000);
-            }).catch(function() {
-              formMessage.textContent = 'Submission failed. Please try again.';
-              formMessage.className = 'form-message error';
-              setTimeout(function() {
-                formMessage.classList.add('hidden');
-              }, 6000);
-            });
-          }
-        })
-        .catch(function() {
-          formMessage.textContent = 'Network error. Please check your connection and try again.';
-          formMessage.className = 'form-message error';
-          setTimeout(function() {
-            formMessage.classList.add('hidden');
-          }, 6000);
-        });
-      });
-    }
-  </script>
-</body>
+    </footer>
+    <script src="site.js"></script>
+  </body>
 </html>
