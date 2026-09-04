@@ -35,14 +35,13 @@ nilandatabytes-site/
 ├── 404.html            # Not-found page
 ├── site.css            # Shared presentation
 ├── site.js             # Shared interactions
-├── _redirects          # Cloudflare Pages clean-URL redirects
-├── _headers            # Cloudflare Pages response headers
+├── _headers            # Cloudflare static-asset response headers
 ├── sitemap.xml
 ├── robots.txt
 └── assets/             # Brand, team, client and technology assets
 ```
 
-The pages share `site.css` and `site.js`. Cloudflare Pages publishes the repository root. The top-level `404.html` prevents unknown routes from being treated as a single-page-app fallback.
+The pages share `site.css` and `site.js`. Cloudflare Workers publishes the repository as static assets and provides clean HTML URLs automatically. The top-level `404.html` handles unknown routes.
 
 ---
 
@@ -103,12 +102,12 @@ Use your machine’s LAN IP (e.g. `http://192.168.x.x:3000`) from other devices.
 
 ---
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare Workers
 
 ### With GitHub (recommended)
 
 1. Push this folder to a GitHub repo.
-2. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
+2. In [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages**, connect the `nilandatabytes` Worker to the repository.
 3. Select the repo.
 4. **Build settings:**
    - **Framework preset:** None  
@@ -120,9 +119,9 @@ Pushes to the default branch will trigger new deployments.
 
 ### Direct upload (no Git)
 
-1. **Workers & Pages** → **Create** → **Pages** → **Upload assets**.
-2. Zip the project folder (with `index.html` at the root).
-3. Upload the zip and deploy.
+1. Open the `nilandatabytes` Worker and choose **New deployment**.
+2. Choose **folder** and select the project folder with `index.html` at its root.
+3. Upload the folder and deploy.
 4. Add your custom domain under the project’s **Custom domains**.
 
 ---
