@@ -35,13 +35,14 @@ nilandatabytes-site/
 ├── 404.html            # Not-found page
 ├── site.css            # Shared presentation
 ├── site.js             # Shared interactions
-├── netlify.toml        # Hosting routes and security headers
+├── _redirects          # Cloudflare Pages clean-URL redirects
+├── _headers            # Cloudflare Pages response headers
 ├── sitemap.xml
 ├── robots.txt
 └── assets/             # Brand, team, client and technology assets
 ```
 
-The pages share `site.css` and `site.js`. Netlify publishes the repository root and returns `404.html` for unknown routes rather than rewriting them to the homepage.
+The pages share `site.css` and `site.js`. Cloudflare Pages publishes the repository root. The top-level `404.html` prevents unknown routes from being treated as a single-page-app fallback.
 
 ---
 
