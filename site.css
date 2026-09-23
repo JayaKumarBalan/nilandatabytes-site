@@ -869,7 +869,7 @@ body {
   background: rgba(18, 91, 108, 0.35);
 }
 .hero-pathway {
-  justify-content: flex-start;
+  justify-content: center;
   padding-inline: 14px;
   border-color: rgba(173, 134, 255, 0.34);
   background: linear-gradient(
@@ -886,9 +886,13 @@ body {
 }
 .hero-pathway span {
   display: block;
+  width: 100%;
   color: #d8c8ff;
-  font-size: 0.72rem;
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
   font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-align: center;
 }
 .hero-pathway:hover,
 .hero-pathway:focus-visible {
